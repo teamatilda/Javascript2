@@ -1,0 +1,39 @@
+:root {
+  /* ===== Färger ===== */
+
+  /* Bakgrund / ytor */
+  --color-bg-main: #c9c5bb; /* varm beige/grå */
+  --color-bg-light: #f6f3ec; /* ljus linne */
+  --color-bg-secondary: #ece7dd; /* sekundär yta */
+
+  /* Text */
+  --color-text-primary: #5e5a50; /* mörk varmgrå */
+  --color-text-secondary: #8a8376; /* ljusare text */
+
+  /* Accenter */
+  --color-accent-light: #cbb9a6; /* ljus granit */
+  --color-accent-soft: #b8b1a3; /* mjuk neutral */
+  --color-accent-dark: #8f8a7b; /* mörkare accent */
+
+  /* ===== Typsnitt ===== */
+
+  --font-primary: "Inter", sans-serif;
+  --font-secondary: "Playfair Display", serif;
+
+  /* ===== Typografi ===== */
+
+  --font-size-base: 16px;
+  --font-size-lg: 1.25rem;
+  --font-size-sm: 0.875rem;
+
+  --line-height-base: 1.6;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
