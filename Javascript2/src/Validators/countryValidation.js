@@ -9,21 +9,20 @@ export function validateCountriesMetadata(data) {
         name: country.name || "Unknown",
         capital: country.capital || "Unknown",
         region: country.region || "Unknown",
+        slug: country.name.toLowerCase().replaceAll(" ", "-"),
     }));
 }
 
 export function validateCountry(country) {
-    if (!country || !country.metadata) {
+    if (!country) {
         throw new Error("Invalid country data");
     }
 
-    const metadata = country.metadata;
-
     return {
-        name: metadata.names?.common || "Unknown",
-        officialName: metadata.names?.official || "Unknown",
-        capital: metadata.capital?.[0] || "Unknown",
-        region: metadata.region || "Unknown",
-        population: metadata.population || 0,
+        name: country.identity.names?.common || country.name || "Unknown",
+        officialName: country.identity.names?.official || "Unknown",
+        capital: country.government.capital?.value?.name?.string || "Unknown",
+        region: country.identity.classification?.region || "Unknown",
+        population: country.people_and_society.population?.value?.total?.number || 0,
     };
 }

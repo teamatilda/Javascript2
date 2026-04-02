@@ -4,7 +4,7 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import { useEffect } from 'react'
-import { getAllCountries } from './api/countriesApi'
+import { getAllCountries, getCountryBySlug } from './api/countriesApi'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,6 +15,12 @@ function App() {
       try {
         const countries = await getAllCountries()
         console.log("Countries:", countries)
+
+        const firstCountry = countries[0]
+        console.log("First country:", firstCountry)
+
+        const fullCountry = await getCountryBySlug(firstCountry.slug)
+        console.log("Full country:", fullCountry)
       } catch (err) {
         console.error("Error:", err.message)
       }
