@@ -4,6 +4,8 @@ nav {
   border-bottom-right-radius: 1rem;
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
   padding: clamp(0.625rem, calc(0.125rem + 2.667vw), 1.625rem) 0;
+  display: flex;
+  justify-content: center;
 }
 
 nav h1 {
@@ -18,7 +20,90 @@ nav p {
   font-size: clamp(0.75rem, 0.6667rem + 0.4444vw, 1rem);
 }
 
+nav svg {
+  stroke: var(--color-text-secondary);
+  margin-bottom: 0.1rem;
+}
+
+nav input {
+  height: 100%;
+  width: 100%;
+  background: none;
+  border: none;
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+nav input:focus {
+  outline: none;
+}
+
+nav input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+nav input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%237a3b30' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.nav-search-wrapper,
+nav select {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-bg-light);
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  height: 1.8rem;
+  padding-left: 0.3rem;
+}
+
+.nav-search-wrapper {
+  width: 100%;
+}
+
+nav select {
+  width: 10.5rem;
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+.nav-search-wrapper:focus-within,
+nav select:focus {
+  outline: 2px solid var(--color-accent-soft);
+}
+
+.nav-content {
+  margin: 0 0.8rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.nav-content-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-content-top img {
+  height: 4rem;
+}
+
 .nav-header {
   text-align: center;
   text-wrap: nowrap;
+}
+
+.nav-controls {
+  margin: clamp(0.625rem, calc(0.125rem + 2.667vw), 1.625rem) 0 0;
+  display: flex;
+  gap: 0.3rem;
 }

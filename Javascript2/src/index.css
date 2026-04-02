@@ -15,6 +15,29 @@
   --color-accent-soft: #b8b1a3; /* mjuk neutral */
   --color-accent-dark: #8f8a7b; /* mörkare accent */
 
+  /* Kantlinje */
+  --color-border: #d4cfc6;
+
+  /* Alerts – danger */
+  --color-alert-danger-bg: #e8d5d0;
+  --color-alert-danger-border: #c4897a;
+  --color-alert-danger-text: #7a3b30;
+
+  /* Alerts – warning */
+  --color-alert-warning-bg: #ede8d0;
+  --color-alert-warning-border: #c4a84a;
+  --color-alert-warning-text: #6b5520;
+
+  /* Alerts – success */
+  --color-alert-success-bg: #d4e3d4;
+  --color-alert-success-border: #7aa87a;
+  --color-alert-success-text: #2e5230;
+
+  /* Alerts – info */
+  --color-alert-info-bg: #d2dce8;
+  --color-alert-info-border: #7a9fc4;
+  --color-alert-info-text: #2b3f5c;
+
   /* ===== Typsnitt ===== */
 
   --font-primary: "Inter", sans-serif;
