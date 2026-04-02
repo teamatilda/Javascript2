@@ -1,0 +1,80 @@
+
+body {
+    background-color: var(--color-bg-main);
+    font-family: var(--font-secondary);
+    margin: 0;
+}
+
+.CountryInfoCard {
+    display: grid;
+    justify-self: center;
+    margin: 10rem;
+    gap: 1rem;
+    background-color: var(--color-bg-light);
+    box-shadow: 0 4px 8px 0 var(--color-accent-dark), 0 6px 20px 0 var(--color-accent-dark);
+    border-radius: 10px;
+}
+
+.CountryHeader {
+    color: whitesmoke;
+    background-color: var(--color-bg-light);
+    width: 50rem;
+    height: 10rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    align-items: center;
+    justify-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* overlay över bilden så att den är lite mörkare*/
+.CountryHeader::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+
+    z-index: 1;
+}
+
+.CountryTitle {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+
+    color: white;
+    z-index: 2;
+}
+
+.CountryHeader img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.LanguageCurrency {
+    display: flex;
+    gap: 1rem;
+    padding: 0 1rem 1rem;
+    justify-content: center;
+    align-items: flex-start
+}
+
+.LanguageCurrency > div {
+    flex: 1;
+    background-color: var(--color-bg-secondary);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.Label {
+    color: var(--color-text-secondary);
+}
+
+.Value {
+    color: var(--color-text-primary);
+}
