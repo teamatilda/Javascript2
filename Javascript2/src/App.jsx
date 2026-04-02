@@ -3,9 +3,25 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import { useEffect } from 'react'
+import { getAllCountries } from './api/countriesApi'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  // function for testing API
+  useEffect(() => {
+    async function testApi() {
+      try {
+        const countries = await getAllCountries()
+        console.log("Countries:", countries)
+      } catch (err) {
+        console.error("Error:", err.message)
+      }
+    }
+
+    testApi()
+  }, [])
 
   return (
     <>

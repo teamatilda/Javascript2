@@ -24,5 +24,5 @@ export async function getCountryBySlug(slug) {
 
     const data = await response.json();
     
-    return ValidateCountry(data.data);
+    return validateCountry(data.data);
 }

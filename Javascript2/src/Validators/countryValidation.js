@@ -6,8 +6,9 @@ export function validateCountriesMetadata(data) {
     const countriesArray = Object.values(data.countries);
 
     return countriesArray.map((country) => ({
-        slug: country.slug,
-        name: country.names?.common || "Unknown",
+        name: country.name || "Unknown",
+        capital: country.capital || "Unknown",
+        region: country.region || "Unknown",
     }));
 }
 
