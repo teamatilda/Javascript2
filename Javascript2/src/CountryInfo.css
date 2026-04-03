@@ -1,52 +1,56 @@
-
-body {
-    background-color: var(--color-bg-main);
-    font-family: var(--font-secondary);
-    margin: 0;
-}
-
 .CountryInfoCard {
     display: grid;
     justify-self: center;
-    margin: 10rem;
+
+    margin: clamp(1rem, 4vw, 5rem);
+
     gap: 1rem;
-    background-color: var(--color-bg-light);
-    box-shadow: 0 4px 8px 0 var(--color-accent-dark), 0 6px 20px 0 var(--color-accent-dark);
-    border-radius: 10px;
+    background: var(--color-bg-secondary);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 1rem;
+
+    width: min(90%, 50rem);
 }
 
 .CountryHeader {
-    color: whitesmoke;
-    background-color: var(--color-bg-light);
-    width: 50rem;
-    height: 10rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    width: 100%;
+    height: clamp(8rem, 20vw, 10rem);
+
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    display: grid;
     align-items: center;
     justify-items: center;
+
     overflow: hidden;
     position: relative;
 }
 
-/* overlay över bilden så att den är lite mörkare*/
+/* overlay */
 .CountryHeader::after {
     content: "";
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
-
     z-index: 1;
 }
 
 .CountryTitle {
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3rem;
 
-    color: white;
+    /* responsiv text */
+    font-size: clamp(1.5rem, 4vw, 3rem);
+
+    font-family: var(--font-secondary);
+    color: #f6f6f6;
     z-index: 2;
+
+    text-align: center;
+    padding: 0 1rem;
 }
 
 .CountryHeader img {
@@ -60,15 +64,23 @@ body {
     gap: 1rem;
     padding: 0 1rem 1rem;
     justify-content: center;
-    align-items: flex-start
+
+    /* radbryt på små skärmar */
+    flex-wrap: wrap;
 }
 
 .LanguageCurrency > div {
-    flex: 1;
-    background-color: var(--color-bg-secondary);
+    flex: 1 1 120px; /* minst 120px, annars bryt rad */
+
+    background-color: var(--color-bg-light);
     border-radius: 8px;
     text-align: center;
-    font-size: 0.8rem;
+
+    /* responsiv text */
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+
+    padding: 0.5rem;
+    font-family: var(--font-primary);
 }
 
 .Label {

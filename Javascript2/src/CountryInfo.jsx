@@ -20,11 +20,11 @@ function CountryInfo({ name, image, language, currency, history }) {
             </div>
 
             <div className="LanguageCurrency">
-                <div>
+                <div className="InfoSection">
                     <h2 className="Label">Language</h2>
                     <h2 className="Value">{country.language}</h2>
                 </div>
-                <div>
+                <div className="InfoSection">
                     <h2 className="Label">Currency</h2>
                     <h2 className="Value">{country.currency}</h2>
                 </div>

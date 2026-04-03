@@ -1,12 +1,16 @@
 import { useState } from 'react'
-import './App.css'
+import "./Navbar.css";
+
+import Navbar from "./Navbar";
 import CountryInfo from './CountryInfo'
 
 function App() {
-
   return (
-    <CountryInfo />
-  )
+    <>
+      <Navbar />
+      <CountryInfo />
+    </>
+  );
 }
 
-export default App
+export default App;
