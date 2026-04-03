@@ -31,7 +31,7 @@ function CountryInfo({ name, image, language, currency, history }) {
             </div>
 
             <div className="WeatherWidget">
-                {/* Här läggs väder-widgeten in */}
+                {/* Lägg in weather widget här */}
             </div>
 
             <div className="InfoBox">
