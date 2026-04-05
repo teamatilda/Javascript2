@@ -23,6 +23,8 @@ export async function getCountryBySlug(slug) {
     }
 
     const data = await response.json();
-    
+    console.log("Raw API Response:", data);
+    console.log("Raw Country Data", data.data);
+
     return validateCountry(data.data);
 }

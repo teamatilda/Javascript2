@@ -24,5 +24,6 @@ export function validateCountry(country) {
         capital: country.government.capital?.value?.name?.string || "Unknown",
         region: country.identity.classification?.region || "Unknown",
         population: country.people_and_society.population?.value?.total?.number || 0,
+        code: country.identity.iso?.alpha2 || "",
     };
 }
