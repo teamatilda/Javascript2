@@ -1,0 +1,99 @@
+/* Väderkort */
+.weather-card {
+  width: min(94vw, 920px);
+  min-height: 320px;
+  border-radius: 14px;
+  padding: 20px;
+  color: #fff;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+/*väderinformation */
+.weather-overlay {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.weather-now {
+  min-width: 220px;
+}
+
+.weather-hours {
+  width: min(100%, 560px);
+}
+
+.weather-hours h3 {
+  margin: 0 0 10px;
+}
+/* timvis väderprognos och även scrollfunktionen */
+.hourly-list {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+  padding-bottom: 4px;
+}
+/*  */
+.hour-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.weather-card h2,
+.weather-card p,
+.weather-card h3 {
+  margin: 0;
+}
+/* Responsiv design */
+@media (max-width: 760px) {
+  .weather-card {
+    min-height: 280px;
+  }
+
+  .weather-overlay {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .weather-hours {
+    width: 100%;
+  }
+}
+/* Bilder till olika vädertyper */
+/* sol */
+.clear {
+  background-image: url("/sunny.jpg");
+}
+
+/* moln */
+.clouds {
+  background-image: url("/cloudy.jpg");
+}
+
+/* regn */
+.rain {
+  background-image: url("/rain.jpg");
+}
+
+/* snö */
+.snow {
+  background-image: url("/snow.jpg");
+}
+
+/* åska */
+.thunder {
+  background-image: url("/thunder.jpg");
+}
