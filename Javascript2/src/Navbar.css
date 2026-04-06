@@ -53,6 +53,14 @@ nav input::-webkit-search-cancel-button {
   background-repeat: no-repeat;
 }
 
+nav button {
+  transition: 0.2s ease all;
+}
+
+nav button:hover {
+  filter: brightness(1.08);
+}
+
 .nav-search-wrapper,
 nav select {
   border: 1px solid var(--color-border);
@@ -73,6 +81,7 @@ nav select {
   width: 10.5rem;
   font-family: var(--font-primary);
   color: var(--color-text-primary);
+  cursor: pointer;
 }
 
 .nav-search-wrapper:focus-within,
@@ -184,7 +193,7 @@ nav select:focus {
 #nav-filters-reset-btn {
   margin-top: 0.6rem;
   background: var(--color-alert-warning-bg);
-  border: 1px solid var(--color-alert-warning-border);
+  border: 1px solid var(--color-alert-warning-text);
   color: var(--color-alert-warning-text);
 }
 
