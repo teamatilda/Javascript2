@@ -3,7 +3,7 @@ nav {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
-  padding: clamp(0.625rem, calc(0.125rem + 2.667vw), 1.625rem) 0;
+  padding: clamp(0.625rem, calc(0.125rem + 2.667vw), 1.625rem) 0 0 0;
   display: flex;
   justify-content: center;
 }
@@ -83,18 +83,8 @@ nav select:focus {
 .nav-content {
   margin: 0 0.8rem;
   width: 100%;
+  height: 100%;
   max-width: 1200px;
-}
-
-.nav-content-top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.nav-content-top img {
-  height: 4rem;
 }
 
 .nav-header {
@@ -105,5 +95,116 @@ nav select:focus {
 .nav-controls {
   margin: clamp(0.625rem, calc(0.125rem + 2.667vw), 1.625rem) 0 0;
   display: flex;
+  flex-direction: column;
   gap: 0.3rem;
+}
+
+.nav-controls button {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-bg-light);
+  color: var(--color-text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.nav-filter-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+.nav-filter-controls button {
+  max-width: 8rem;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+}
+
+.nav-filter-controls button.active {
+  background: var(--color-alert-info-text);
+  color: var(--color-alert-info-bg);
+  border: 1px solid var(--color-alert-info-border);
+}
+
+.nav-filter-controls p {
+  font-size: 0.9rem;
+  margin: 0.4rem 0;
+  color: var(--color-text-primary);
+}
+
+.nav-filter-menu-top,
+.nav-filter-menu-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.nav-filter-menu-bottom {
+  margin-top: 0.8rem;
+}
+
+.nav-filter-menu-country-type {
+  padding-right: 1rem;
+}
+
+.nav-filter-controls-buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+#nav-filter-toggle-btn {
+  background: none;
+  border: none;
+  margin: 0 auto;
+  padding-bottom: 0.3rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  transition: 0.2s ease all;
+}
+
+#nav-filter-toggle-btn svg {
+  transition: 0.2s ease all;
+}
+
+#nav-filter-toggle-btn:hover {
+  color: var(--color-text-primary);
+  transition: 0.2s ease all;
+}
+
+#nav-filter-toggle-btn:hover svg {
+  stroke: var(--color-text-primary);
+  transition: 0.2s ease all;
+}
+
+#nav-filters-reset-btn {
+  margin-top: 0.6rem;
+  background: var(--color-alert-warning-bg);
+  border: 1px solid var(--color-alert-warning-border);
+  color: var(--color-alert-warning-text);
+}
+
+.nav-filter-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.nav-filter-menu.active {
+  transition: max-height 0.6s ease;
+  max-height: 500px;
+}
+
+@media (max-width: 500px) {
+  .nav-filter-menu-top,
+  .nav-filter-menu-bottom {
+    flex-direction: column;
+    align-items: baseline;
+    width: 100%;
+    gap: 0.8rem;
+  }
 }
