@@ -1,45 +1,41 @@
 
-import Japan from '../src/assets/japan.jpg';
 import './CountryInfo.css'
 import './index.css'
 
-function CountryInfo({ name, image, language, currency, history }) {
-
-    const country = {
-        name: "Japan",
-        image: Japan,
-        language: "Japanese",
-        currency: "Yen",
-    };
+export default function CountryInfo({ country }) {
 
     return (
-        <section className="CountryInfoCard">
-            <div className="CountryHeader">
-                <h1 className="CountryTitle">{country.name}</h1>
-                <img className="CountryImage" src={country.image} alt={name}/>
+        <section className="country-info-card">
+            <div className="country-header">
+                <h1 className="country-title">{country.name}</h1>
+                <img src={country.image} alt={country.name} />
             </div>
 
-            <div className="LanguageCurrency">
-                <div className="InfoSection">
-                    <h2 className="Label">Language</h2>
-                    <h2 className="Value">{country.language}</h2>
-                </div>
-                <div className="InfoSection">
-                    <h2 className="Label">Currency</h2>
-                    <h2 className="Value">{country.currency}</h2>
-                </div>
+            <div className="language-currency">
+                    <InfoSection label="Language" value={country.language} />
+                    <InfoSection label="Currency" value={country.currency} />
             </div>
 
-            <div className="WeatherWidget">
+            <div className="weather-widget">
                 {/* Lägg in weather widget här */}
             </div>
 
-            <div className="InfoBox">
+            <div className="info-box">
                 <p>{country.history}</p>
             </div>
         </section>
     )
 }
 
-export default CountryInfo;
+
+function InfoSection({ label, value }) {
+    return (
+        <div className="info-section">
+            <h2 className="label">{label}</h2>
+            <h2 className="value">{value}</h2>
+        </div>
+    )
+}
+
+
 
