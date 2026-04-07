@@ -1,8 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
 import { useEffect } from 'react'
 import { getAllCountries, getCountryBySlug } from './api/countriesApi'
 
@@ -35,6 +31,7 @@ function App() {
 
   return (
     <>
+      {/* Function for getting flag */}
       {country && (
         <span className={`fi fi-${country.code.toLowerCase()}`}></span>
       )}
