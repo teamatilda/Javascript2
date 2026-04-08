@@ -59,29 +59,16 @@ function NavFilters() {
         <div className="nav-filter-menu-top">
           <div className="nav-filter-menu-country-type">
             <p>Country Type</p>
-            <div className="nav-filter-controls-buttons-wrapper">
-              {["All", "Sovereign State", "Dependent", "Other"].map((value) => (
-                <button
-                  key={value}
-                  onClick={() => setCountryTypes(value)}
-                  className={
-                    value === "All"
-                      ? countryTypes.length === 0
-                        ? "active"
-                        : ""
-                      : countryTypes.includes(value)
-                        ? "active"
-                        : ""
-                  }>
-                  {value}
-                </button>
-              ))}
-            </div>
+            <NavFilterButtonGroup
+              buttonLabels={["All", "Sovereign State", "Dependent", "Other"]}
+              filtersArray={countryTypes}
+              setFiltersArray={setCountryTypes}
+            />
           </div>
           <div className="nav-filter-menu-regions">
             <p>Regions</p>
-            <div className="nav-filter-controls-buttons-wrapper">
-              {[
+            <NavFilterButtonGroup
+              buttonLabels={[
                 "All",
                 "Africa",
                 "Americas",
@@ -89,23 +76,10 @@ function NavFilters() {
                 "Asia",
                 "Europe",
                 "Oceania",
-              ].map((value) => (
-                <button
-                  key={value}
-                  onClick={() => setRegions(value)}
-                  className={
-                    value === "All"
-                      ? regions.length === 0
-                        ? "active"
-                        : ""
-                      : regions.includes(value)
-                        ? "active"
-                        : ""
-                  }>
-                  {value}
-                </button>
-              ))}
-            </div>
+              ]}
+              filtersArray={regions}
+              setFiltersArray={setRegions}
+            />
           </div>
         </div>
         <div className="nav-filter-menu-bottom">
@@ -134,6 +108,29 @@ function NavFilters() {
         {filterMenuActive ? "Hide filters" : "Show filters"}
         <ListFilter size="11" />
       </button>
+    </div>
+  );
+}
+
+function NavFilterButtonGroup({ buttonLabels, filtersArray, setFiltersArray }) {
+  return (
+    <div className="nav-filter-controls-buttons-wrapper">
+      {buttonLabels.map((label) => (
+        <button
+          key={label}
+          onClick={() => setFiltersArray(label)}
+          className={
+            label === "All"
+              ? filtersArray.length === 0
+                ? "active"
+                : ""
+              : filtersArray.includes(label)
+                ? "active"
+                : ""
+          }>
+          {label}
+        </button>
+      ))}
     </div>
   );
 }
