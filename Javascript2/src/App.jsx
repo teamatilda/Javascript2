@@ -13,13 +13,13 @@ function App() {
     name: "Japan",
     image: Japan,
     language: "Japanese",
-    currency: "Yen"
+    currency: "Yen",
+    population: "122 M",
 };
 
   return (
     <>
       <Navbar />
-      <WeatherWidget />
       <CountryInfo country={japan} />
     </>
   );
