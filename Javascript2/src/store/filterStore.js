@@ -1,5 +1,8 @@
 import { create } from "zustand";
 
+// Helper function that handles selection of multi-select filters.
+// Toggles a value in a filter array on or off, or clears it if
+// "All" is selected.
 function setMultiSelectFilter(prev, filterArrayKey, selectedFilter) {
   if (selectedFilter === "All") return { [filterArrayKey]: [] };
   return {
@@ -9,6 +12,7 @@ function setMultiSelectFilter(prev, filterArrayKey, selectedFilter) {
   };
 }
 
+// Global Zustand filter state for filtering countries during rendering
 export const useFilterStore = create((set) => ({
   countryTypes: [],
   regions: [],

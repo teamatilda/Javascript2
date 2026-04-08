@@ -2,6 +2,8 @@ import { Search, ListFilter } from "lucide-react";
 import { useState } from "react";
 import { useFilterStore } from "../store/filterStore";
 
+// Complete navbar component. The search bar and filter menu values
+// are synced with /store/filterStore.js using Zustand.
 export default function Navbar() {
   return (
     <nav>
@@ -16,6 +18,7 @@ export default function Navbar() {
   );
 }
 
+// Header and sub-header
 function NavHeader() {
   return (
     <div className="nav-header">
@@ -25,6 +28,7 @@ function NavHeader() {
   );
 }
 
+// Search input field
 function NavSearchBar() {
   const { searchQuery, setSearchQuery } = useFilterStore();
 
@@ -42,6 +46,7 @@ function NavSearchBar() {
   );
 }
 
+// Animated filter menu with country types, regions, sort, and reset button
 function NavFilters() {
   const [filterMenuActive, setFilterMenuActive] = useState(false);
   const {
@@ -112,6 +117,7 @@ function NavFilters() {
   );
 }
 
+// Reusable toggle-button group for multi-select filters
 function NavFilterButtonGroup({ buttonLabels, filtersArray, setFiltersArray }) {
   return (
     <div className="nav-filter-controls-buttons-wrapper">
@@ -135,6 +141,7 @@ function NavFilterButtonGroup({ buttonLabels, filtersArray, setFiltersArray }) {
   );
 }
 
+// Dropdown for selecting sort order
 function NavSortDropdown() {
   const { sortBy, setSortBy } = useFilterStore();
 
