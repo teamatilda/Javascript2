@@ -1,6 +1,7 @@
 
 import './CountryInfo.css'
 import './index.css'
+import WeatherWidget from './WeatherWidget'
 
 export default function CountryInfo({ country }) {
 
@@ -14,14 +15,16 @@ export default function CountryInfo({ country }) {
             <div className="language-currency">
                     <InfoSection label="Language" value={country.language} />
                     <InfoSection label="Currency" value={country.currency} />
+                    <InfoSection label= "Population" value={country.population} />
             </div>
 
             <div className="weather-widget">
-                {/* Lägg in weather widget här */}
+                <WeatherWidget />
             </div>
 
             <div className="info-box">
-                <p>{country.history}</p>
+                <h2>Title</h2>
+                <p> Text here...{country.history}</p> 
             </div>
         </section>
     )
