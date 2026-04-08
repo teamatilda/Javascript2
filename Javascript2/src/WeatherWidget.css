@@ -31,6 +31,15 @@
 .weather-hours h3 {
   margin: 0 0 10px;
 }
+
+.weather-days {
+  margin-top: 12px;
+}
+
+.weather-days h3 {
+  margin: 0 0 10px;
+}
+
 /* timvis väderprognos och även scrollfunktionen */
 .hourly-list {
   display: flex;
@@ -40,6 +49,16 @@
   scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
   padding-bottom: 4px;
 }
+
+.daily-list {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+  padding-bottom: 4px;
+}
+
 /*  */
 .hour-item {
   display: flex;
@@ -52,13 +71,23 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
+.day-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .weather-card h2,
 .weather-card p,
 .weather-card h3 {
   margin: 0;
 }
-/* Responsiv design */
-@media (max-width: 760px) {
+
   .weather-card {
     min-height: 280px;
   }
@@ -66,12 +95,21 @@
   .weather-overlay {
     flex-direction: column;
     align-items: stretch;
+    gap: 20px
   }
 
   .weather-hours {
     width: 100%;
   }
-}
+
+  .weather-days {
+    margin-top: 10px;
+  }
+
+  .weather-icon {
+    font-size: 2rem;
+  }
+
 /* Bilder till olika vädertyper */
 /* sol */
 .clear {
@@ -96,4 +134,11 @@
 /* åska */
 .thunder {
   background-image: url("/thunder.jpg");
+}
+
+/* Responsiv design */
+@media (max-width: 760px) {
+  .weather-card {
+    width: min(94vw, 100%);
+  }
 }

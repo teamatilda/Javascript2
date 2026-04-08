@@ -1,15 +1,33 @@
 import { useEffect, useState } from 'react';
 import './WeatherWidget.css';
+
+function getWeatherType(code) {
+  if (code >= 1 && code < 3) {
+    return 'clouds';
+  }
+  if (code >= 60 && code < 69) {
+    return 'rain';
+  }
+  if (code >= 70 && code < 79) {
+    return 'snow';
+  }
+  if (code >= 95 && code < 99) {
+    return 'thunder';
+  }
+  return 'clear';
+}
+
 /* Väderwidgetten hämtar data från apiet. nu är det hårdkodat till en plats i Sverige */
 function WeatherWidget() {
   const latitude = 59.60840398913638;
   const longitude = 16.53267630028628;
   const [weather, setWeather] = useState(null);
   const [hourlyTemps, setHourlyTemps] = useState([]);
+  const [dailyForecast, setDailyForecast] = useState([]); 
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m&windspeed_unit=ms&temperature_unit=celsius`)
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,weathercode&windspeed_unit=ms&temperature_unit=celsius&daily=temperature_2m_max,temperature_2m_min,weathercode`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Weather API request failed');
@@ -35,15 +53,30 @@ function WeatherWidget() {
           .map((time, index) => ({
             time,
             temperature: hourly.temperature_2m[index],
+            code: hourly.weathercode[index],
           }))
           .filter((entry) => entry.time.startsWith(today));
 
         setHourlyTemps(hourlyDataForToday);
+/* Skapar en array med 5 dagar framåt med max och min temp */
+        const daily = data.daily;
+        if (!daily || !daily.time || !daily.temperature_2m_max || !daily.temperature_2m_min || !daily.weathercode) {
+          throw new Error('No daily weather in API response');
+        }
+        const fiveDays = daily.time.slice(0, 5).map((day, index) => ({
+          date: day,
+          max: daily.temperature_2m_max[index],
+          min: daily.temperature_2m_min[index],
+          code: daily.weathercode[index]
+        }));
+        setDailyForecast(fiveDays);
+        setError('');
   /* Sätter error till en tom sträng om allt gick bra. */
       })
       .catch(() => {
         setWeather(null);
         setHourlyTemps([]);
+        setDailyForecast([]);
         setError('Kunde inte hämta väderdata just nu.');
       });
  /* useEffect körs när komponenten mountas och när latitude eller longitude ändras. */
@@ -68,27 +101,52 @@ function WeatherWidget() {
   } else if (weather.weathercode >= 95 && weather.weathercode < 99) {
     background = 'thunder';
   }
+const weatherIcons = {
+  clear: "☀️",
+  clouds: "☁️",
+  rain: "🌧️",
+  snow: "❄️",
+  thunder: "⛈️"
+};
+
 /* Skriver ut bakgrundsbilden och väderinformation */
   return (
     <div className={`weather-card ${background}`}>
       <div className="weather-overlay">
         <div className="weather-now">
-          <h2>Här vill jag ha land som hämtas från API</h2>
+          <h1 className="weather-icon">{weatherIcons[background]}</h1>
+          <h2></h2>
           <p>Temperature: {weather.temperature} °C</p>
           <p>Wind speed: {weather.windspeed} m/s</p>
           <p>Condition: {background}</p>
         </div>
 
-  {/* Loopar hourlyTemps och skriver ut varje timme och temperaturen. */}
+  {/* Loopar hourlyTemps och skriver ut varje timme och temperaturen */}
         <div className="weather-hours">
           <h3>Today by hour</h3>
           <div className="hourly-list">
             {hourlyTemps.map((hour) => (
               <div key={hour.time} className="hour-item">
                 <span>{hour.time.slice(11, 13)}</span>
+                 <span>{weatherIcons[getWeatherType(hour.code)]}</span>
                 <span>{hour.temperature} °C</span>
               </div>
             ))}
+          </div>
+   {/* Loopar dailyForecast och skriver ut varje en min och max temp för 5 dagar frmaåt */}
+          <div className="weather-days">
+            <h3>Next 5 days</h3>
+            <div className="daily-list">
+              {dailyForecast.map((day) => (
+                <div key={day.date} className="day-item">
+                  <span>
+                    {new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' })}
+                  </span>
+                  <span>{weatherIcons[getWeatherType(day.code)]}</span>
+                  <span>{day.max}° / {day.min}°</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
