@@ -1,6 +1,6 @@
 import { Search, ListFilter } from "lucide-react";
 import { useState } from "react";
-import { useFilterStore } from "./store/filterStore";
+import { useFilterStore } from "../store/filterStore";
 
 export default function Navbar() {
   return (

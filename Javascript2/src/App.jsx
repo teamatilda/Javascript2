@@ -1,12 +1,11 @@
-import Navbar from "./Navbar";
-import ZustandRenderTest from "./ZustandRenderTest";
+import Navbar from "./components/Navbar";
 import { useState, useEffect } from "react";
 import { getAllCountries, getCountryBySlug } from "./api/countriesApi";
 import WeatherWidget from "./WeatherWidget";
 import "./WeatherWidget.css";
 import CountryInfo from "./CountryInfo";
-import Japan from "./assets/japan.jpg";
-import "./Navbar.css"
+import Japan from "./assets/Japan.jpg";
+import "./styles/Navbar.css";
 
 function App() {
   const [count, setCount] = useState(0);
