@@ -1,22 +1,31 @@
 
-import ZustandRenderTest from "./ZustandRenderTest";
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { getAllCountries, getCountryBySlug } from './api/countriesApi'
 
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import "./Navbar.css";
 
-import WeatherWidget from "./WeatherWidget";
+import WeatherWidget from "./components/WeatherWidget";
 import "./WeatherWidget.css";
 
-import CountryInfo from './CountryInfo';
+import CountryInfo from './components/CountryInfo';
 import "./CountryInfo.css";
+import Japan from "./assets/japan.jpg";
 
 
 function App() {
   const [count, setCount] = useState(0)
   const [country, setCountry] = useState(null)
+
+    const japan = {
+    name: "Japan",
+    image: Japan,
+    language: "Japanese",
+    currency: "Yen",
+    population: "122 M",
+};
+
 
   // function for testing API
   useEffect(() => {
@@ -44,7 +53,6 @@ function App() {
   return (
     <>
       <Navbar />
-      <WeatherWidget />
       <CountryInfo country={japan} />
     </>
   );
