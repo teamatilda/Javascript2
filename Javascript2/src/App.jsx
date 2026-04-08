@@ -1,3 +1,5 @@
+import Navbar from "./Navbar";
+import ZustandRenderTest from "./ZustandRenderTest";
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { getAllCountries, getCountryBySlug } from './api/countriesApi'
@@ -55,6 +57,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <ZustandRenderTest />
       <WeatherWidget />
       <CountryInfo country={japan} />
     </>
