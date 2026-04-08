@@ -1,6 +1,8 @@
 
-import './CountryInfo.css'
-import './index.css'
+import '../styles/CountryInfo.css';
+import '../styles//index.css';
+import WeatherWidget from './WeatherWidget';
+
 
 export default function CountryInfo({ country }) {
 
@@ -17,7 +19,7 @@ export default function CountryInfo({ country }) {
             </div>
 
             <div className="weather-widget">
-                {/* Lägg in weather widget här */}
+                <WeatherWidget />
             </div>
 
             <div className="info-box">
