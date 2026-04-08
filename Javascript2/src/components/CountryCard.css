@@ -1,0 +1,38 @@
+.country-card {
+  width: 280px;
+  background-color: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.country-card:hover {
+  transform: translateY(-6px);
+}
+
+.country-card__flag {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.country-card__content {
+  padding: 1rem;
+}
+
+.country-card__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.4rem;
+  color: #111827;
+}
+
+.country-card__text {
+  margin: 0.4rem 0;
+  color: #4b5563;
+  font-size: 1rem;
+}

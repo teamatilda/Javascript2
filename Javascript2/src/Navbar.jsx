@@ -1,4 +1,6 @@
-import { Search } from "lucide-react";
+import { Search, ListFilter } from "lucide-react";
+import { useState } from "react";
+import { useFilterStore } from "./store/filterStore";
 
 export default function Navbar() {
   return (
@@ -7,7 +9,7 @@ export default function Navbar() {
         <NavHeader />
         <div className="nav-controls">
           <NavSearchBar />
-          <NavRegionDropdown />
+          <NavFilters />
         </div>
       </div>
     </nav>
@@ -24,6 +26,8 @@ function NavHeader() {
 }
 
 function NavSearchBar() {
+  const { searchQuery, setSearchQuery } = useFilterStore();
+
   return (
     <div className="nav-search-wrapper">
       <Search size="15" />
@@ -31,22 +35,117 @@ function NavSearchBar() {
         type="search"
         id="nav-search-bar"
         placeholder="Search countries..."
+        onChange={(e) => setSearchQuery(e.target.value)}
+        value={searchQuery}
       />
     </div>
   );
 }
 
-function NavRegionDropdown() {
+function NavFilters() {
+  const [filterMenuActive, setFilterMenuActive] = useState(false);
+  const {
+    countryTypes,
+    regions,
+    setCountryTypes,
+    setRegions,
+    setSortBy,
+    setSearchQuery,
+  } = useFilterStore();
+
+  return (
+    <div className="nav-filter-controls">
+      <div className={`nav-filter-menu ${filterMenuActive ? "active" : ""}`}>
+        <div className="nav-filter-menu-top">
+          <div className="nav-filter-menu-country-type">
+            <p>Country Type</p>
+            <div className="nav-filter-controls-buttons-wrapper">
+              {["All", "Sovereign State", "Dependent", "Other"].map((value) => (
+                <button
+                  key={value}
+                  onClick={() => setCountryTypes(value)}
+                  className={
+                    value === "All"
+                      ? countryTypes.length === 0
+                        ? "active"
+                        : ""
+                      : countryTypes.includes(value)
+                        ? "active"
+                        : ""
+                  }>
+                  {value}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="nav-filter-menu-regions">
+            <p>Regions</p>
+            <div className="nav-filter-controls-buttons-wrapper">
+              {[
+                "All",
+                "Africa",
+                "Americas",
+                "Antarctica",
+                "Asia",
+                "Europe",
+                "Oceania",
+              ].map((value) => (
+                <button
+                  key={value}
+                  onClick={() => setRegions(value)}
+                  className={
+                    value === "All"
+                      ? regions.length === 0
+                        ? "active"
+                        : ""
+                      : regions.includes(value)
+                        ? "active"
+                        : ""
+                  }>
+                  {value}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="nav-filter-menu-bottom">
+          <div className="nav-filter-menu-sort">
+            <p>Sort By</p>
+            <NavSortDropdown />
+          </div>
+          <div className="nav-filter-menu-reset">
+            <button
+              id="nav-filters-reset-btn"
+              onClick={() => {
+                setCountryTypes("All");
+                setRegions("All");
+                setSearchQuery("");
+                setSortBy("Name");
+              }}>
+              Reset Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button
+        id="nav-filter-toggle-btn"
+        onClick={() => setFilterMenuActive(!filterMenuActive)}>
+        {filterMenuActive ? "Hide filters" : "Show filters"}
+        <ListFilter size="11" />
+      </button>
+    </div>
+  );
+}
+
+function NavSortDropdown() {
+  const { sortBy, setSortBy } = useFilterStore();
+
   return (
     <>
-      <select>
-        <option value="All Regions">All Regions</option>
-        <option value="Africa">Africa</option>
-        <option value="Americas">Americas</option>
-        <option value="Antarctica">Antarctica</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="Oceania">Oceania</option>
+      <select onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
+        <option value="Name">Name</option>
+        <option value="Population">Population</option>
       </select>
     </>
   );
