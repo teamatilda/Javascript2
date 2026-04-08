@@ -1,9 +1,9 @@
 import Navbar from "./components/Navbar";
 import { useState, useEffect } from "react";
 import { getAllCountries, getCountryBySlug } from "./api/countriesApi";
-import WeatherWidget from "./WeatherWidget";
-import "./WeatherWidget.css";
-import CountryInfo from "./CountryInfo";
+import WeatherWidget from "./components/WeatherWidget";
+import "./styles/WeatherWidget.css";
+import CountryInfo from "./components/CountryInfo";
 import Japan from "./assets/Japan.jpg";
 import "./styles/Navbar.css";
 
