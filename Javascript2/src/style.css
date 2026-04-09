@@ -1,0 +1,106 @@
+.app-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.left-panel,
+.right-panel {
+  border-radius: 24px;
+  padding: 1.5rem;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.right-panel {
+  background: #f8f4ef;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.favorites-section {
+  margin-bottom: 1.5rem;
+}
+
+.favorites-section h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.country-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.weather-section {
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.favorites-row,
+.countries-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  padding-bottom: 0.5rem;
+  scroll-behavior: smooth;
+}
+
+.card-scroll-item {
+  flex: 0 0 auto;
+  min-width: 240px;
+}
+
+.bottom-showcase {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.content-box {
+  background: #f8f4ef;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.favorites-section h3,
+.countries-section h3 {
+  margin: 0 0 1rem;
+}
+
+.favorites-row p {
+  margin: 0;
+}
+
+.weather-side {
+  border-radius: 16px;
+  overflow: hidden;
+}
