@@ -1,4 +1,4 @@
-export function validateWeatherdata(data) {
+export function validateWeatherData(data) {
     if (!data) {
         throw new Error("Invalid weather data");
     }

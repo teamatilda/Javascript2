@@ -1,4 +1,4 @@
-import { validateWeatherdata } from "../Validators/weatherValidation.js";
+import { validateWeatherData } from "../Validators/weatherValidation.js";
 
 const BASE_URL = "https://api.open-meteo.com/v1/forecast"
 
@@ -11,5 +11,5 @@ export async function getWeather(lat, lon) {
 
     const data = await response.json();
 
-    return validateWeatherdata(data);
+    return data;
 }
