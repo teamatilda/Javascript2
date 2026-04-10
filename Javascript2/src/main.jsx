@@ -4,7 +4,7 @@ import App from './App.jsx';
 import 'flag-icons/css/flag-icons.min.css';
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import "./styles/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
