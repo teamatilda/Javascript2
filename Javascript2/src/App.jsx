@@ -1,18 +1,11 @@
-
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { getAllCountries, getCountryBySlug } from './api/countriesApi'
-
 import Navbar from "./components/Navbar";
-import "./Navbar.css";
-
+import { useState, useEffect } from "react";
+import { getAllCountries, getCountryBySlug } from "./api/countriesApi";
 import WeatherWidget from "./components/WeatherWidget";
-import "./WeatherWidget.css";
-
-import CountryInfo from './components/CountryInfo';
-import "./CountryInfo.css";
-import Japan from "./assets/japan.jpg";
-
+import "./styles/WeatherWidget.css";
+import CountryInfo from "./components/CountryInfo";
+import Japan from "./assets/Japan.jpg";
+import "./styles/Navbar.css";
 
 function App() {
   const [count, setCount] = useState(0)
