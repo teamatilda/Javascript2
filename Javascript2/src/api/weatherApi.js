@@ -11,5 +11,5 @@ export async function getWeather(lat, lon) {
 
     const data = await response.json();
 
-    return data;
+    return validateWeatherData(data);
 }

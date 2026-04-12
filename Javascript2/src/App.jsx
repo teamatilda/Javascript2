@@ -36,7 +36,7 @@ function App() {
 
         
       const weather = await getWeather(fullCountry.lat, fullCountry.lon)
-      console.log("Raw Weather:", weather)
+      console.log("Weather:", weather)
       
       } catch (err) {
         console.error("Error:", err.message);
