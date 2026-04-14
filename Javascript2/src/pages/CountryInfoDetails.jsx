@@ -29,8 +29,8 @@ export default function CountryInfoDetails() {
 }, [info]);                                                {/* Komponenten körs varje gång info ändras */}
 
 if (!info) return <p>No parameters</p>;
-if (loading) return <p>Loading...</p>
-if (error) return <p>{error}</p>
+if (loading) return <p>Loading...</p>;
+if (error) return <p>{error}</p>;
 if (!country) return <p>Country could not be found</p>;
 
   return <CountryInfo country={country} />;        {/* Skickar datan som props till CountryInfo */}

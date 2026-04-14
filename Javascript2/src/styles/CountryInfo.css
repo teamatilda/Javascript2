@@ -12,7 +12,7 @@
     width: min(90%, 50rem);
 }
 
-.country-header {
+.country-info-header {
     width: 100%;
     height: clamp(8rem, 20vw, 10rem);
 
@@ -28,7 +28,7 @@
 }
 
 /* overlay */
-.country-header::after {
+.country-info-header::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -36,7 +36,7 @@
     z-index: 1;
 }
 
-.country-title {
+.country-info-title {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -53,13 +53,13 @@
     padding: 0 1rem;
 }
 
-.country-header img {
+.country-info-header img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.language-currency {
+.country-info-section {
     display: flex;
     gap: 1rem;
     padding: 0 1rem 1rem;
@@ -69,7 +69,7 @@
     flex-wrap: wrap;
 }
 
-.language-currency > div {
+.country-info-section > div {
     flex: 1 1 120px; /* minst 120px, annars bryt rad */
 
     background-color: var(--color-bg-light);
@@ -91,13 +91,13 @@
     color: var(--color-text-primary);
 }
 
-.weather-widget {
+.country-info-weather {
     display: flex;
     padding: 0, 1rem, 1rem;
     justify-content: center; 
 }
 
-.info-box {
+.country-info-box {
     background-color: var(--color-bg-light);
     color: var(--color-text-secondary);
     font-family: var(--font-primary);
@@ -113,10 +113,10 @@
     margin: 1rem;
 }
 
-.info-box h2 {
+.country-info-box h2 {
     color: var(--color-text-secondary);
 }
 
-.info-box p {
+.country-info-box p {
     color: var(--color-text-primary);
 }
