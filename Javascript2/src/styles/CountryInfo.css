@@ -27,36 +27,42 @@
     position: relative;
 }
 
+/* Flagga som bakgrund i heaadern */
+.country-info-header .fi {
+    position: absolute;
+    inset: 0;
+    
+    width: 100%;
+    height: 100%;
+
+    transform: scale(.8);
+}
+
 /* overlay */
 .country-info-header::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+
+     background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0.6)
+    );
+
     z-index: 1;
 }
 
 .country-info-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    z-index: 2;
 
-    /* responsiv text */
     font-size: clamp(1.5rem, 4vw, 3rem);
-
     font-family: var(--font-secondary);
     color: #f6f6f6;
-    z-index: 2;
 
     text-align: center;
     padding: 0 1rem;
-}
-
-.country-info-header img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .country-info-section {
@@ -75,6 +81,7 @@
     background-color: var(--color-bg-light);
     border-radius: 8px;
     text-align: center;
+    align-content: center;
 
     /* responsiv text */
     font-size: clamp(0.75rem, 2vw, 0.9rem);
@@ -91,12 +98,14 @@
     color: var(--color-text-primary);
 }
 
+/* Väder-widget */
 .country-info-weather {
     display: flex;
     padding: 0, 1rem, 1rem;
     justify-content: center; 
 }
 
+/* Historia/info box */
 .country-info-box {
     background-color: var(--color-bg-light);
     color: var(--color-text-secondary);
