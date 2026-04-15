@@ -8,6 +8,7 @@ import Japan from "./assets/Japan.jpg";
 import "./styles/Navbar.css";
 import { getWeather } from "./api/weatherApi";
 import FlagQuiz from "./pages/FlagQuiz";
+import { useCountriesStore } from "./store/countriesStore.js";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -20,6 +21,17 @@ function App() {
     currency: "Yen",
     population: "122 M",
   };
+
+  // Stores data from getAllCountries in a Zustand store
+  const setCountries = useCountriesStore((state) => state.setCountries);
+
+  useEffect(() => {
+    async function fetchCountries() {
+      const data = await getAllCountries();
+      setCountries(data);
+    }
+    fetchCountries();
+  }, []);
 
   // function for testing API
   useEffect(() => {

@@ -1,6 +1,20 @@
 import "../styles/FlagQuiz.css";
+import { useCountriesStore } from "../store/countriesStore";
+import { useState, useEffect } from "react";
 
 export default function FlagQuiz() {
+  const countries = useCountriesStore((state) => state.countries);
+  const [currentCountry, setCurrentCountry] = useState(null);
+  console.log("Flag Quiz Rendered");
+
+  useEffect(() => {
+    if (countries.length > 0) {
+      setCurrentCountry(getRandomCountry(countries));
+    }
+  }, [countries]);
+
+  if (!currentCountry) return <p>Loading...</p>;
+
   return (
     <div className="flag-quiz">
       <div className="flag-quiz-content">
@@ -19,16 +33,44 @@ export default function FlagQuiz() {
           </span>
         </div>
         <div className="flag-quiz-layout-wrapper">
-          <span className="fi fi-se"></span>
+          <span className={`fi fi-${currentCountry.code}`}></span>
           <div className="flag-quiz-answers">
-            <button>Sweden</button>
-            <button>Norway</button>
-            <button>United Kingdom</button>
-            <button>Romania</button>
-            <button>Next</button>
+            {currentCountry.answers.map((answer) => (
+              <button key={answer}>{answer}</button>
+            ))}
+            <button
+              onClick={() => setCurrentCountry(getRandomCountry(countries))}>
+              Next
+            </button>
           </div>
         </div>
+        <p>{currentCountry.rightAnswer}</p>
+        <p>{currentCountry.code}</p>
       </div>
     </div>
   );
+}
+
+function getRandomCountry(countries) {
+  let indexArray = [];
+
+  for (let i = 0; i < 4; i++) {
+    let randomIndex = 0;
+    do {
+      randomIndex = Math.floor(Math.random() * countries.length);
+      console.log("Inside do block");
+    } while (indexArray.includes(randomIndex));
+    indexArray.push(randomIndex);
+  }
+
+  return {
+    code: countries[indexArray[0]].code,
+    rightAnswer: countries[indexArray[0]].name,
+    answers: [
+      countries[indexArray[0]].name,
+      countries[indexArray[1]].name,
+      countries[indexArray[2]].name,
+      countries[indexArray[3]].name,
+    ].sort(() => Math.random() - 0.5),
+  };
 }
