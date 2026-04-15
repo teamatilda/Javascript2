@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./CountryCard.css";
+import "../styles/CountryCard.css";
 
 function CountryCard({ country }) {
   return (

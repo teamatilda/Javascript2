@@ -1,0 +1,99 @@
+.flag-quiz {
+  display: flex;
+  justify-content: center;
+}
+
+.flag-quiz-content {
+  background: var(--color-bg-secondary);
+  margin: 1rem 0.8rem;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.flag-quiz-header {
+  margin: 0.5rem auto;
+  width: 30rem;
+  text-align: center;
+}
+
+.flag-quiz-header h2 {
+  font-family: var(--font-secondary);
+  color: var(--color-text-primary);
+  font-size: clamp(2rem, 1.6667rem + 1.7778vw, 3rem);
+}
+
+.flag-quiz-header p {
+  font-family: var(--font-primary);
+  color: var(--color-text-secondary);
+  font-size: clamp(0.75rem, 0.6667rem + 0.4444vw, 1rem);
+}
+
+.flag-quiz-score {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-primary);
+  font-size: clamp(1rem, 0.9333rem + 0.3556vw, 1.2rem);
+  margin: 0.8rem 0 -1rem 0;
+  width: clamp(15rem, 26.6667vw + 10rem, 30rem);
+}
+
+.flag-quiz-score span {
+  display: flex;
+  gap: 0.2rem;
+  color: var(--color-text-primary);
+}
+
+.flag-quiz-score-strong {
+  font-weight: 600;
+}
+
+.flag-quiz-layout-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2.5rem;
+}
+
+.flag-quiz-content .fi {
+  aspect-ratio: 4 / 3;
+  width: clamp(15rem, 26.6667vw + 10rem, 30rem);
+  border-radius: 0.5rem;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.flag-quiz-answers {
+  aspect-ratio: 4 / 3;
+  width: clamp(15rem, 26.6667vw + 10rem, 30rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.flag-quiz-answers button {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-bg-light);
+  color: var(--color-text-primary);
+  font-size: clamp(1.3rem, 1.2333rem + 0.3556vw, 1.5rem);
+  padding: 0.2rem;
+  height: clamp(2rem, 0.9286rem + 3.4286vw, 3.5rem);
+  min-height: 2.5rem;
+}
+
+@media (max-width: 970px) {
+  .flag-quiz-layout-wrapper {
+    flex-direction: column;
+  }
+
+  .flag-quiz-content > * {
+    width: clamp(15rem, 26.6667vw + 10rem, 30rem);
+  }
+}
