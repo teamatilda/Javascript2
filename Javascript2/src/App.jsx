@@ -6,6 +6,7 @@ import "./styles/WeatherWidget.css";
 import CountryInfo from "./components/CountryInfo";
 import Japan from "./assets/Japan.jpg";
 import "./styles/Navbar.css";
+import { getWeather } from "./api/weatherApi";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,11 +34,16 @@ function App() {
         const fullCountry = await getCountryBySlug(firstCountry.slug)
         console.log("Full country raw:", fullCountry)
 
-        setCountry(fullCountry)
+        setCountry(fullCountry);
+
         
+      const weather = await getWeather(fullCountry.lat, fullCountry.lon)
+      console.log("Weather:", weather)
+      
       } catch (err) {
         console.error("Error:", err.message)
       }
+
     }
 
     testApi()
