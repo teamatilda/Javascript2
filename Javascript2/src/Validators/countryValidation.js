@@ -33,5 +33,6 @@ export function validateCountry(country) {
         .filter(lang => lang.label !== "Other")
         .map(lang => lang.label)
         .join(", ") : "N/A",
+        background: country.introduction?.background?.value?.string || "Unknown",
     };
 }

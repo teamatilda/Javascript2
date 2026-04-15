@@ -24,8 +24,8 @@ export default function CountryInfo({ country }) {
       </div>
 
       <div className="country-info-box">
-        <h2>History</h2>
-        <p>Text here...{country.history}</p>
+        <h2>Background</h2>
+        <p>{country.background}</p>
       </div>
     </section>
   );
