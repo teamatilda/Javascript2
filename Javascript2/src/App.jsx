@@ -5,6 +5,9 @@ import "./styles/WeatherWidget.css";
 import Navbar from "./components/Navbar";
 import "./styles/Navbar.css";
 import CountryInfoDetails from "./pages/CountryInfoDetails";
+import CountryInfo from "./components/CountryInfo";
+import { getWeather } from "./api/weatherApi";
+import WeatherWidget from "./components/WeatherWidget";
 
 function App() {
   return (
@@ -19,34 +22,3 @@ function App() {
 
 export default App;
 
-{
-  /*
-  const [count, setCount] = useState(0)
-  const [country, setCountry] = useState(null)
-
-
-  // function for testing API
-  useEffect(() => {
-    async function testApi() {
-      try {
-        const countries = await getAllCountries()
-        console.log("Countries:", countries)
-
-        const firstCountry = countries[0]
-        console.log("First country:", firstCountry)
-
-        const fullCountry = await getCountryBySlug(firstCountry.slug)
-        console.log("Full country raw:", fullCountry)
-
-        setCountry(fullCountry)
-        
-      } catch (err) {
-        console.error("Error:", err.message)
-      }
-    }
-
-    testApi()
-  }, [])
-
-  */
-}

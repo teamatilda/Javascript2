@@ -19,6 +19,7 @@ export function validateCountry(country) {
     }
 
     const rawPopulation = country.people_and_society?.population?.value?.total?.number || 0;
+    const coordinates = country.government?.capital?.value?.coordinates;
 
     return {
         name: country.identity.names?.common || country.name || "Unknown",
@@ -34,5 +35,7 @@ export function validateCountry(country) {
         .map(lang => lang.label)
         .join(", ") : "N/A",
         background: country.introduction?.background?.value?.string || "Unknown",
+        lat: coordinates?.latitude ?? null,
+        lon: coordinates?.longitude ?? null,
     };
 }
