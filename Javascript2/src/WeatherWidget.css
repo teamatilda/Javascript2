@@ -1,4 +1,4 @@
-/* Väderkort */
+/* Weather card */
 .weather-card {
   width: min(94vw, 920px);
   min-height: 280px;
@@ -13,7 +13,7 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
-/* Layout för innehållet i väderkortet */
+/* Layout for weather card content */
 .weather-overlay {
   height: 100%;
   display: flex;
@@ -22,17 +22,17 @@
   gap: 20px;
 }
 
-/* Nuvarande vädersektion */
+/* Current weather section */
 .weather-now {
   min-width: 220px;
 }
 
-/* Prognossektioner */
+/* Forecast sections */
 .weather-hours {
   width: 100%;
 }
 
-/* Rubriker i prognossektioner */
+/* Headers in forecast sections */
 .weather-hours h3 {
   margin: 0 0 10px;
 }
@@ -45,7 +45,7 @@
   margin: 0 0 10px;
 }
 
-/* Timvis lista med horisontell scroll */
+/* Hourly list with horizontal scroll */
 .hourly-list {
   display: flex;
   flex-direction: row;
@@ -55,7 +55,7 @@
   padding-bottom: 4px;
 }
 
-/* Dagslista med horisontell scroll */
+/* Daily list with horizontal scroll */
 .daily-list {
   display: flex;
   flex-direction: row;
@@ -65,7 +65,7 @@
   padding-bottom: 4px;
 }
 
-/* Timkort med fast bredd för jämn layout */
+/* Hour card with fixed width for even layout */
 .hour-item {
   display: grid;
   grid-template-columns: 1fr;
@@ -83,7 +83,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Kort för dagsprognos */
+/* Card for day forecast */
 .day-item {
   display: flex;
   flex-direction: column;
@@ -95,40 +95,40 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* Nollställ marginal för text i kortet */
+/* Reset margin for text in the card */
 .weather-card h2,
 .weather-card p,
 .weather-card h3 {
   margin: 0;
 }
 
-/* Ikonstorlek för nuvarande väder */
+/* Icon size for current weather */
 .weather-icon {
   font-size: 2rem;
 }
 
-/* Bilder till olika vädertyper */
-/* sol */
+/* Images for different weather types */
+/* clear */
 .clear {
   background-image: url("/sunny.jpg");
 }
 
-/* moln */
+/* clouds */
 .clouds {
   background-image: url("/cloudy.jpg");
 }
 
-/* regn */
+/* rain */
 .rain {
   background-image: url("/rain.jpg");
 }
 
-/* snö */
+/* snow */
 .snow {
   background-image: url("/snow.jpg");
 }
 
-/* åska */
+/* thunder */
 .thunder {
   background-image: url("/thunder.jpg");
 }

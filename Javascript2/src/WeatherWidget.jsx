@@ -17,10 +17,10 @@ function getWeatherType(code) {
   return 'clear';
 }
 
-/* Väderwidgetten hämtar data från apiet. nu är det hårdkodat till en plats i Sverige */
+/* The weather widget fetches data from the API. It is currently hardcoded to a location in Sweden */
 function WeatherWidget() {
-  const latitude = 59.60840398913638;
-  const longitude = 16.53267630028628;
+  const latitude = 70.167984;
+  const longitude = 90.907227;
   const [weather, setWeather] = useState(null);
   const [hourlyTemps, setHourlyTemps] = useState([]);
   const [dailyForecast, setDailyForecast] = useState([]); 
@@ -37,18 +37,18 @@ function WeatherWidget() {
       .then((data) => {
         const current = data.current_weather ?? data.current;
         const hourly = data.hourly;
-  /* Kollar om det finns väderdata i API:et, annars skrivs ett felmeddelande. */
+  /* Checks if there is weather data in the API, otherwise an error message is written. */
         if (!current || !hourly) {
           throw new Error('No current weather in API response');
         }
-  /* Sätter väderdata i state. */
+  /* Sets weather data in state. */
         setWeather({
           temperature: current.temperature ?? current.temp,
           windspeed: current.windspeed ?? current.wind_speed,
           weathercode: current.weathercode ?? current.weather_code ?? 0,
         });
         const today = new Date().toISOString().split('T')[0];
-  /* Skapar en array med timme och temperatur för varje timme idag. */
+  /* Creates an array with time and temperature for each hour today. */
         const hourlyDataForToday = hourly.time
           .map((time, index) => ({
             time,
@@ -58,7 +58,7 @@ function WeatherWidget() {
           .filter((entry) => entry.time.startsWith(today));
 
         setHourlyTemps(hourlyDataForToday);
-/* Skapar en array med 5 dagar framåt med max och min temp */
+/* Creates an array with 5 days forward with max and min temperature */
         const daily = data.daily;
         if (!daily || !daily.time || !daily.temperature_2m_max || !daily.temperature_2m_min || !daily.weathercode) {
           throw new Error('No daily weather in API response');
@@ -71,15 +71,15 @@ function WeatherWidget() {
         }));
         setDailyForecast(fiveDays);
         setError('');
-  /* Sätter error till en tom sträng om allt gick bra. */
+  /* Sets error to an empty string if everything went well. */
       })
       .catch(() => {
         setWeather(null);
         setHourlyTemps([]);
         setDailyForecast([]);
-        setError('Kunde inte hämta väderdata just nu.');
+        setError('Could not fetch weather data right now.');
       });
- /* useEffect körs när komponenten mountas och när latitude eller longitude ändras. */
+ /* useEffect runs when the component mounts and when latitude or longitude changes. */
   }, [latitude, longitude]);
 
   if (error) {
@@ -89,7 +89,7 @@ function WeatherWidget() {
   if (!weather) {
     return <p>Loading weather...</p>;
   }
-/* Ändrar bakgrundsbilden beroende på väderkoden som returneras från APIet. */
+/* Changes the background image based on the weather code returned from the API. */
   let background = 'clear';
 
   if (weather.weathercode >= 1 && weather.weathercode < 3) {
@@ -109,7 +109,7 @@ const weatherIcons = {
   thunder: "⛈️"
 };
 
-/* Skriver ut bakgrundsbilden och väderinformation */
+/* Outputs the background image and weather information */
   return (
     <div className={`weather-card ${background}`}>
       <div className="weather-overlay">
@@ -121,7 +121,7 @@ const weatherIcons = {
           <p>Condition: {background}</p>
         </div>
 
-  {/* Loopar hourlyTemps och skriver ut varje timme och temperaturen */}
+  {/* Loops through hourlyTemps and outputs each hour and the temperature */}
         <div className="weather-hours">
           <h3>Today by hour</h3>
           <div className="hourly-list">
@@ -133,7 +133,7 @@ const weatherIcons = {
               </div>
             ))}
           </div>
-   {/* Loopar dailyForecast och skriver ut varje en min och max temp för 5 dagar frmaåt */}
+   {/* Loops through dailyForecast and outputs min and max temperature for 5 days forward */}
           <div className="weather-days">
             <h3>Next 5 days</h3>
             <div className="daily-list">
