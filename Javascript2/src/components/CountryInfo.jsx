@@ -16,6 +16,8 @@ export default function CountryInfo({ country }) {
         <InfoSection label="Capital" value={country.capital} />
         <InfoSection label="Currency" value={country.currency} />
         <InfoSection label="Population" value={country.population} />
+        <InfoSection label="Area" value={country.area} />
+        <InfoSection label="Region" value={country.region} />
         <InfoSection label="Languages" value={country.languages} />
       </div>
 

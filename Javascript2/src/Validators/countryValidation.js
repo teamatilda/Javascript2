@@ -35,6 +35,8 @@ export function validateCountry(country) {
         .map(lang => lang.label)
         .join(", ") : "N/A",
         background: country.introduction?.background?.value?.string || "Unknown",
+        area: `${country.geography?.area?.value?.total?.measurement} ${country.geography?.area?.value?.total?.unit}` || "Unknown",
+        region: country.identity.classification?.region || "Unknown",
         lat: coordinates?.latitude ?? null,
         lon: coordinates?.longitude ?? null,
     };
