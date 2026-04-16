@@ -1,5 +1,5 @@
 import "./ZustandRenderTest.css";
-import { useFilterStore } from "./store/filterStore";
+import { useFilterStore } from "../store/filterStore";
 
 export default function ZustandRenderTest() {
   const { countryTypes, regions, sortBy, searchQuery } = useFilterStore();

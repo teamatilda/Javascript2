@@ -92,9 +92,31 @@
 }
 
 .weather-widget {
-    background-color: var(--color-bg-light);
+    display: flex;
+    padding: 0, 1rem, 1rem;
+    justify-content: center; 
 }
 
 .info-box {
     background-color: var(--color-bg-light);
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+
+    display: flex;
+    flex-direction: column;
+    
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin: 1rem;
+}
+
+.info-box h2 {
+    color: var(--color-text-secondary);
+}
+
+.info-box p {
+    color: var(--color-text-primary);
 }

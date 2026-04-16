@@ -18,6 +18,8 @@ export function validateCountry(country) {
         throw new Error("Invalid country data");
     }
 
+    const coordinates = country.government?.capital?.value?.coordinates;
+
     return {
         name: country.identity.names?.common || country.name || "Unknown",
         officialName: country.identity.names?.official || "Unknown",
@@ -25,5 +27,7 @@ export function validateCountry(country) {
         region: country.identity.classification?.region || "Unknown",
         population: country.people_and_society.population?.value?.total?.number || 0,
         code: country.identity.iso?.alpha2 || "",
+        lat: coordinates?.latitude ?? null,
+        lon: coordinates?.longitude ?? null,
     };
 }
