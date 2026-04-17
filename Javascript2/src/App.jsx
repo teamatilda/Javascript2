@@ -7,7 +7,7 @@ import CountryInfo from "./components/CountryInfo";
 import Japan from "./assets/Japan.jpg";
 import "./styles/Navbar.css";
 import { getWeather } from "./api/weatherApi";
-import FlagQuiz from "./pages/FlagQuiz";
+import FlagQuizPage from "./pages/FlagQuizPage.jsx";
 import { useCountriesStore } from "./store/countriesStore.js";
 
 function App() {
@@ -62,7 +62,7 @@ function App() {
     <>
       <Navbar />
       {/* <CountryInfo country={japan} /> */}
-      <FlagQuiz />
+      <FlagQuizPage />
     </>
   );
 }
