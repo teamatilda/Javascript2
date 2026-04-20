@@ -2,6 +2,7 @@ import "../styles/CountryInfo.css";
 import "../styles/index.css";
 import WeatherWidget from "./WeatherWidget";
 import "flag-icons/css/flag-icons.min.css";
+import CountryMap from "./CountryMaps";
 
 export default function CountryInfo({ country }) {
 
@@ -23,6 +24,10 @@ export default function CountryInfo({ country }) {
 
       <div className="country-info-weather">
         <WeatherWidget capital={country.capital} />
+      </div>
+
+      <div className="country-map">
+        <CountryMap country={country} />
       </div>
 
       <div className="country-info-box">

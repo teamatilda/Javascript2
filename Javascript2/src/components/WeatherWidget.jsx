@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './WeatherWidget.css';
+import '../styles/WeatherWidget.css';
 
 function getWeatherType(code) {
   if (code >= 1 && code < 3) {

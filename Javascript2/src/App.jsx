@@ -10,6 +10,7 @@ import { getWeather } from "./api/weatherApi";
 import WeatherWidget from "./components/WeatherWidget";
 import FlagQuizPage from "./pages/FlagQuizPage.jsx";
 import { useCountriesStore } from "./store/countriesStore.js";
+import MapView from "./components/CountryMaps.jsx";
 
 function App() {
   return (

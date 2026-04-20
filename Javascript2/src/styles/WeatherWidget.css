@@ -1,8 +1,6 @@
 /* Weather card */
 .weather-card {
 
-  width: clamp(18rem, 90vw, 45rem);
-  height: clamp(8rem, 20vw, 10rem);
   width: min(94vw, 920px);
   min-height: 280px;
   border-radius: 14px;

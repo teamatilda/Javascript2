@@ -105,6 +105,14 @@
     justify-content: center; 
 }
 
+.country-map {
+  height: 400px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 /* background info box */
 .country-info-box {
     background-color: var(--color-bg-light);
