@@ -1,0 +1,94 @@
+import "../styles/FlagQuiz.css";
+
+export default function FlagQuiz({
+  score,
+  highscore,
+  currentFlag,
+  answersArray,
+  handleAnswerClick,
+  selectedAnswer,
+  rightAnswer,
+  handleNextClick,
+}) {
+  return (
+    <div className="flag-quiz">
+      <div className="flag-quiz-content">
+        <FlagQuizHeader />
+        <FlagQuizScore score={score} highscore={highscore} />
+        <div className="flag-quiz-layout-wrapper">
+          <span className={`fi fi-${currentFlag}`}></span>
+          <FlagQuizButtons
+            answersArray={answersArray}
+            handleAnswerClick={handleAnswerClick}
+            selectedAnswer={selectedAnswer}
+            rightAnswer={rightAnswer}
+            handleNextClick={handleNextClick}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FlagQuizHeader() {
+  return (
+    <span className="flag-quiz-header">
+      <h2>Flag quiz</h2>
+      <p>Guess the flag!</p>
+    </span>
+  );
+}
+
+function FlagQuizScore({ score = "?", highscore = "?" }) {
+  return (
+    <div className="flag-quiz-score">
+      <span>
+        <p>Score: </p>
+        <p className="flag-quiz-score-strong">{score}</p>
+      </span>
+      <span>
+        <p>Highscore: </p>
+        <p className="flag-quiz-score-strong">{highscore}</p>
+      </span>
+    </div>
+  );
+}
+
+function FlagQuizButtons({
+  answersArray,
+  handleAnswerClick,
+  selectedAnswer,
+  rightAnswer,
+  handleNextClick,
+}) {
+  return (
+    <div className="flag-quiz-buttons">
+      {answersArray.map((answer) => (
+        <button
+          key={answer}
+          onClick={() => handleAnswerClick(answer)}
+          disabled={selectedAnswer !== null}
+          className={
+            answer === selectedAnswer
+              ? answer === rightAnswer
+                ? "right-answer"
+                : "wrong-answer"
+              : answer === rightAnswer && selectedAnswer !== null
+                ? "right-answer"
+                : selectedAnswer === null
+                  ? ""
+                  : "disabled"
+          }>
+          {answer}
+        </button>
+      ))}
+      <button
+        key="Next"
+        onClick={handleNextClick}
+        disabled={selectedAnswer === null}
+        className={selectedAnswer === null ? "disabled" : ""}>
+        Next
+      </button>
+    </div>
+  );
+}

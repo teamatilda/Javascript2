@@ -30,7 +30,7 @@ function WeatherWidget() {
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,weathercode&windspeed_unit=ms&temperature_unit=celsius&daily=temperature_2m_max,temperature_2m_min,weathercode`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Weather API request failed');
+          throw new Error("Weather API request failed");
         }
         return response.json();
       })
@@ -39,7 +39,7 @@ function WeatherWidget() {
         const hourly = data.hourly;
   /* Checks if there is weather data in the API, otherwise an error message is written. */
         if (!current || !hourly) {
-          throw new Error('No current weather in API response');
+          throw new Error("No current weather in API response");
         }
   /* Sets weather data in state. */
         setWeather({
@@ -93,13 +93,13 @@ function WeatherWidget() {
   let background = 'clear';
 
   if (weather.weathercode >= 1 && weather.weathercode < 3) {
-    background = 'clouds';
+    background = "clouds";
   } else if (weather.weathercode >= 60 && weather.weathercode < 69) {
-    background = 'rain';
+    background = "rain";
   } else if (weather.weathercode >= 70 && weather.weathercode < 79) {
-    background = 'snow';
+    background = "snow";
   } else if (weather.weathercode >= 95 && weather.weathercode < 99) {
-    background = 'thunder';
+    background = "thunder";
   }
 const weatherIcons = {
   clear: "☀️",
