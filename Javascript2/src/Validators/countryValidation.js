@@ -18,6 +18,7 @@ export function validateCountry(country) {
         throw new Error("Invalid country data");
     }
 
+    const rawPopulation = country.people_and_society?.population?.value?.total?.number || 0;
     const coordinates = country.government?.capital?.value?.coordinates;
 
     return {
@@ -25,8 +26,17 @@ export function validateCountry(country) {
         officialName: country.identity.names?.official || "Unknown",
         capital: country.government.capital?.value?.name?.string || "Unknown",
         region: country.identity.classification?.region || "Unknown",
-        population: country.people_and_society.population?.value?.total?.number || 0,
-        code: country.identity.iso?.alpha2 || "",
+        population: rawPopulation >= 1_000_000? `${(rawPopulation / 1_000_000).toFixed(1)} million`
+        : rawPopulation,
+        code: country.identity?.iso?.alpha2?.toLowerCase() || "xx",
+        currency: country.identity.currency?.name || "Unknown",
+        languages: country.people_and_society?.languages?.value? country.people_and_society.languages.value
+        .filter(lang => lang.label !== "Other")
+        .map(lang => lang.label)
+        .join(", ") : "N/A",
+        background: country.introduction?.background?.value?.string || "Unknown",
+        area: `${country.geography?.area?.value?.total?.measurement} ${country.geography?.area?.value?.total?.unit}` || "Unknown",
+        region: country.identity.classification?.region || "Unknown",
         lat: coordinates?.latitude ?? null,
         lon: coordinates?.longitude ?? null,
     };
