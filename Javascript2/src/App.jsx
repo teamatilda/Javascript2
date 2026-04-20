@@ -13,8 +13,45 @@ function App() {
   const saved = localStorage.getItem("favorites");
   return saved ? JSON.parse(saved) : [];
 });
-  const [currentPage, setCurrentPage] = useState(0);
   const [favoritesPage, setFavoritesPage] = useState(0);
+
+const cardsPerPage = 4;
+const numberOfSections = 4;
+
+const [countryPages, setCountryPages] = useState(
+  Array(numberOfSections).fill(0)
+);
+
+const getVisibleCountries = (sectionIndex) => {
+  const page = countryPages[sectionIndex];
+  const startIndex = sectionIndex * cardsPerPage + page * cardsPerPage;
+
+  return countries.slice(startIndex, startIndex + cardsPerPage);
+};
+
+const handleNext = (sectionIndex) => {
+  const page = countryPages[sectionIndex];
+  const nextStartIndex =
+    sectionIndex * cardsPerPage + (page + 1) * cardsPerPage;
+
+  if (nextStartIndex < countries.length) {
+    setCountryPages((prev) => {
+      const updated = [...prev];
+      updated[sectionIndex] += 1;
+      return updated;
+    });
+  }
+};
+
+const handlePrev = (sectionIndex) => {
+  if (countryPages[sectionIndex] > 0) {
+    setCountryPages((prev) => {
+      const updated = [...prev];
+      updated[sectionIndex] -= 1;
+      return updated;
+    });
+  }
+};
 
   useEffect(() => {
   localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -65,68 +102,55 @@ const visibleFavorites = favorites.slice(
 );
 
 const handleNextFavorites = () => {
-  if (favoritesStartIndex + favoritesPerPage < favorites.length) {
-    setFavoritesPage((prev) => prev + 1);
-  }
-};
+    if (favoritesStartIndex + favoritesPerPage < favorites.length) {
+      setFavoritesPage((prev) => prev + 1);
+    }
+  };
 
-const handlePrevFavorites = () => {
-  if (favoritesPage > 0) {
-    setFavoritesPage((prev) => prev - 1);
-  }
-}; 
+  const handlePrevFavorites = () => {
+    if (favoritesPage > 0) {
+      setFavoritesPage((prev) => prev - 1);
+    }
+  };
 
-    
-const cardsPerPage = 4;
-const startIndex = currentPage * cardsPerPage;
+   return (
+    <>
+      <Navbar />
 
-const visibleCountries = countries.slice( 
-  startIndex, 
-  startIndex + cardsPerPage
-);
+      <main className="app-layout">
+        <section className="left-panel">
+          <CountrySection
+            title="Favoriter"
+            countries={visibleFavorites}
+            emptyText="Inga favoriter ännu"
+            onPrev={handlePrevFavorites}
+            onNext={handleNextFavorites}
+            prevDisabled={favoritesPage === 0}
+            nextDisabled={
+              favoritesStartIndex + favoritesPerPage >= favorites.length
+            }
+            onRemoveFavorite={removeFromFavorites}
+            sectionClassName="favorites-section"
+          />
 
-const handleNext = () => {
-  if (startIndex + cardsPerPage < countries.length) {
-    setCurrentPage((prev) => prev + 1);
-  }
-};
+{Array.from({ length: numberOfSections }).map((_, index) => {
+  const page = countryPages[index];
+  const startIndex = index * cardsPerPage + page * cardsPerPage;
 
-const handlePrev = () => {
-  if (currentPage > 0) {
-    setCurrentPage((prev) => prev - 1);
-  }
-};
-
- return (
-  <>
-    <Navbar />
-
-<main className="app-layout">
- <section className="left-panel">
-   <CountrySection
-  title="Favoriter"
-  countries={visibleFavorites}
-  emptyText="Inga favoriter ännu"
-  onPrev={handlePrevFavorites}
-  onNext={handleNextFavorites}
-  prevDisabled={favoritesPage === 0}
-  nextDisabled={ 
-   favoritesStartIndex + favoritesPerPage >= favorites.length
-   }
-  onRemoveFavorite={removeFromFavorites}
-  sectionClassName="favorites-section"
-/>
-
-<CountrySection
-  title="Utforska länder"
-  countries={visibleCountries}
-  emptyText="Inga länder att visa"
-  onPrev={handlePrev}
-  onNext={handleNext}
-  prevDisabled={currentPage === 0}
-  nextDisabled={startIndex + cardsPerPage >= countries.length}
-  onAddFavorite={addToFavorites}
-/>
+  return (
+    <CountrySection
+      key={index}
+      title="Utforska länder"
+      countries={getVisibleCountries(index)}
+      emptyText="Inga länder att visa"
+      onPrev={() => handlePrev(index)}
+      onNext={() => handleNext(index)}
+      prevDisabled={countryPages[index] === 0}
+      nextDisabled={startIndex + cardsPerPage >= countries.length}
+      onAddFavorite={addToFavorites}
+    />
+  );
+})}
 
 <div className="content-box">
   <div className="weather-side">
