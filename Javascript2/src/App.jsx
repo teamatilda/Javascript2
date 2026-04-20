@@ -8,6 +8,8 @@ import CountryInfoDetails from "./pages/CountryInfoDetails";
 import CountryInfo from "./components/CountryInfo";
 import { getWeather } from "./api/weatherApi";
 import WeatherWidget from "./components/WeatherWidget";
+import FlagQuizPage from "./pages/FlagQuizPage.jsx";
+import { useCountriesStore } from "./store/countriesStore.js";
 
 function App() {
   return (

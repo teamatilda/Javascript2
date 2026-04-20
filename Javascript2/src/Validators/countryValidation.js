@@ -1,22 +1,23 @@
 export function validateCountriesMetadata(data) {
-    if (!data || !data.countries) {
-        throw new Error("Invalid countries metadata");
-    }
+  if (!data || !data.countries) {
+    throw new Error("Invalid countries metadata");
+  }
 
-    const countriesArray = Object.values(data.countries);
+  const countriesArray = Object.values(data.countries);
 
-    return countriesArray.map((country) => ({
-        name: country.name || "Unknown",
-        capital: country.capital || "Unknown",
-        region: country.region || "Unknown",
-        slug: country.name.toLowerCase().replaceAll(" ", "-"),
-    }));
+  return countriesArray.map((country) => ({
+    name: country.name || "Unknown",
+    capital: country.capital || "Unknown",
+    region: country.region || "Unknown",
+    slug: country.name.toLowerCase().replaceAll(" ", "-"),
+    code: country.code.iso2.toLowerCase() || "",
+  }));
 }
 
 export function validateCountry(country) {
-    if (!country) {
-        throw new Error("Invalid country data");
-    }
+  if (!country) {
+    throw new Error("Invalid country data");
+  }
 
     const rawPopulation = country.people_and_society?.population?.value?.total?.number || 0;
     const coordinates = country.government?.capital?.value?.coordinates;
