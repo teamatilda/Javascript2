@@ -9,12 +9,12 @@
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
     border-radius: 1rem;
 
-    width: min(90%, 50rem);
+    width: min(100%, 75rem);
 }
 
-.country-header {
+.country-info-header {
     width: 100%;
-    height: clamp(8rem, 20vw, 10rem);
+    height: clamp(8rem, 20vw, 20rem);
 
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
@@ -27,56 +27,63 @@
     position: relative;
 }
 
+/* Flag as background in heaader */
+.country-info-header .fi {
+    position: absolute;
+    inset: 0;
+    
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center;
+}
+
 /* overlay */
-.country-header::after {
+.country-info-header::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+
+     background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0.6)
+    );
+
     z-index: 1;
 }
 
-.country-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.country-info-title {
+    position: relative;
+    z-index: 2;
 
-    /* responsiv text */
-    font-size: clamp(1.5rem, 4vw, 3rem);
-
+    font-size: clamp(2rem, 4vw, 4rem);
     font-family: var(--font-secondary);
     color: #f6f6f6;
-    z-index: 2;
 
     text-align: center;
     padding: 0 1rem;
 }
 
-.country-header img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.language-currency {
+.country-info-section {
     display: flex;
     gap: 1rem;
     padding: 0 1rem 1rem;
-    justify-content: center;
+    place-content: center;
 
-    /* radbryt på små skärmar */
     flex-wrap: wrap;
 }
 
-.language-currency > div {
-    flex: 1 1 120px; /* minst 120px, annars bryt rad */
+.country-info-section > div {
+    flex: 1 1 120px; 
 
     background-color: var(--color-bg-light);
     border-radius: 8px;
     text-align: center;
+    align-content: center;
 
-    /* responsiv text */
+    /* responsive text */
     font-size: clamp(0.75rem, 2vw, 0.9rem);
 
     padding: 0.5rem;
@@ -91,13 +98,15 @@
     color: var(--color-text-primary);
 }
 
-.weather-widget {
+/* Weather-widget */
+.country-info-weather {
     display: flex;
     padding: 0, 1rem, 1rem;
     justify-content: center; 
 }
 
-.info-box {
+/* background info box */
+.country-info-box {
     background-color: var(--color-bg-light);
     color: var(--color-text-secondary);
     font-family: var(--font-primary);
@@ -106,17 +115,17 @@
     flex-direction: column;
     
     gap: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
     margin: 1rem;
 }
 
-.info-box h2 {
+.country-info-box h2 {
     color: var(--color-text-secondary);
 }
 
-.info-box p {
+.country-info-box p {
     color: var(--color-text-primary);
 }

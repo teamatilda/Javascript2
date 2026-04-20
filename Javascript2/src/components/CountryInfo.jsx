@@ -1,28 +1,33 @@
 import "../styles/CountryInfo.css";
 import "../styles/index.css";
 import WeatherWidget from "./WeatherWidget";
+import "flag-icons/css/flag-icons.min.css";
 
 export default function CountryInfo({ country }) {
+
   return (
     <section className="country-info-card">
-      <div className="country-header">
-        <h1 className="country-title">{country.name}</h1>
-        <img src={country.image} alt={country.name} />
+      <div className="country-info-header">
+        <span className={`fi fi-${country.code}`} />
+        <h1 className="country-info-title">{country.name}</h1>
       </div>
 
-      <div className="language-currency">
-        <InfoSection label="Language" value={country.language} />
+      <div className="country-info-section">
+        <InfoSection label="Capital" value={country.capital} />
         <InfoSection label="Currency" value={country.currency} />
         <InfoSection label="Population" value={country.population} />
+        <InfoSection label="Area" value={country.area} />
+        <InfoSection label="Region" value={country.region} />
+        <InfoSection label="Languages" value={country.languages} />
       </div>
 
-      <div className="weather-widget">
-        <WeatherWidget />
+      <div className="country-info-weather">
+        <WeatherWidget capital={country.capital} />
       </div>
 
-      <div className="info-box">
-        <h2>Title</h2>
-        <p> Text here...{country.history}</p>
+      <div className="country-info-box">
+        <h2>Background</h2>
+        <p>{country.background}</p>
       </div>
     </section>
   );

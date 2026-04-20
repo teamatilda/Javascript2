@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import "../styles/WeatherWidget.css";
+import { useEffect, useState } from 'react';
+import '../styles/WeatherWidget.css';
 /* Väderwidgetten hämtar data från apiet. nu är det hårdkodat till en plats i Sverige */
 function WeatherWidget() {
   const latitude = 59.60840398913638;

@@ -30,9 +30,9 @@ function NavHeader() {
 
 // Search input field
 function NavSearchBar() {
-  const { searchQuery, setSearchQuery } = useFilterStore();
+    const { searchQuery, setSearchQuery } = useFilterStore(); 
 
-  return (
+    return (  
     <div className="nav-search-wrapper">
       <Search size="15" />
       <input
@@ -43,6 +43,8 @@ function NavSearchBar() {
         value={searchQuery}
       />
     </div>
+    
+    
   );
 }
 
@@ -154,3 +156,4 @@ function NavSortDropdown() {
     </>
   );
 }
+
