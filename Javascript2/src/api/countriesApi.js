@@ -24,7 +24,7 @@ export async function getCountryBySlug(slug) {
 
     const data = await response.json();
     console.log("Raw API Response:", data);
-    console.log("Raw Country Data", data.data);
+    console.log("Raw Country Data", data.data); // Using these console.logs to search for data values in the console
 
     return validateCountry(data.data);
 }

@@ -38,6 +38,11 @@
   --color-alert-info-border: #7a9fc4;
   --color-alert-info-text: #2b3f5c;
 
+  /* Disabled button */
+  --color-button-disabled-bg: #e8e5df;
+  --color-button-disabled-border: #c4c0b8;
+  --color-button-disabled-text: #a09b90;
+
   /* ===== Typsnitt ===== */
 
   --font-primary: "Inter", sans-serif;

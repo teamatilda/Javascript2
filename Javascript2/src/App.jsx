@@ -1,5 +1,7 @@
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import Home from "./pages/Home";
+import CountryInfoDetails from "./pages/CountryInfoDetails";
 
 import "./WeatherWidget.css";
 import "./Navbar.css";
@@ -9,7 +11,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Country/:info" element={<CountryInfoDetails />} />
+      </Routes>
     </>
   );
 }
