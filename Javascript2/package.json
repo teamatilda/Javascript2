@@ -14,8 +14,11 @@
     "lucide-react": "^1.7.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+<<<<<<< HEAD
+=======
     "react-leaflet": "^5.0.0",
     "react-router": "^7.14.0",
+>>>>>>> c4e0c5e651c7900c6743451197a704783ef62ad0
     "react-router-dom": "^7.14.0",
     "zustand": "^5.0.12"
   },
