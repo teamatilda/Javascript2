@@ -1,7 +1,8 @@
 import "../styles/FlagQuiz.css";
 import { useCountriesStore } from "../store/countriesStore";
 import FlagQuiz from "../components/FlagQuiz.jsx";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { getAllCountries } from "../api/countriesApi.js";
 
 function filterCountries(countries) {
   const excludedCodes = [
@@ -59,6 +60,7 @@ function getNewRound(countries) {
 
 export default function FlagQuizPage() {
   const rawCountries = useCountriesStore((state) => state.countries);
+  const setRawCountries = useCountriesStore((state) => state.setCountries);
   const countries = filterCountries(rawCountries);
   const [currentRound, setCurrentRound] = useState(() =>
     countries.length > 0 ? getNewRound(countries) : null,
@@ -66,13 +68,33 @@ export default function FlagQuizPage() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [highscore, setHighscore] = useState(0);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (countries.length > 0) return;
+
+    async function loadCountries() {
+      try {
+        const data = await getAllCountries();
+        setRawCountries(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    }
+    loadCountries();
+  }, []);
 
   useEffect(() => {
     if (countries.length > 0 && !currentRound) {
-      setCurrentRound(getNewRound(countries));
+      try {
+        setCurrentRound(getNewRound(countries));
+      } catch (err) {
+        setError(err.message);
+      }
     }
   }, [countries, currentRound]);
 
+  if (error) return <p>{error}</p>;
   if (!currentRound) return <p>Loading...</p>;
 
   console.log("Right answer: " + currentRound.rightAnswer);

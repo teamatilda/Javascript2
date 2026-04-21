@@ -17,10 +17,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/Country/:info" element={<CountryInfoDetails />} />
+        <Route path="/FlagQuiz" element={<FlagQuizPage />} />
       </Routes>
     </>
   );
 }
 
 export default App;
-
