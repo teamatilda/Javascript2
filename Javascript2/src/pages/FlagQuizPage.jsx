@@ -73,7 +73,9 @@ export default function FlagQuizPage() {
   );
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
-  const [highscore, setHighscore] = useState(0);
+  const [highscore, setHighscore] = useState(
+    Number(localStorage.getItem("highscore")),
+  );
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -113,6 +115,7 @@ export default function FlagQuizPage() {
       setScore((prev) => prev + 1);
       if (score >= highscore) {
         setHighscore((prev) => prev + 1);
+        localStorage.setItem("highscore", (highscore + 1).toString());
       }
     } else {
       setScore(0);
