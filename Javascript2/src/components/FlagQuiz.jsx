@@ -78,6 +78,13 @@ function FlagQuizButtons({
                 : selectedAnswer === null
                   ? ""
                   : "disabled"
+          }
+          style={
+            answer.length < 23
+              ? { fontSize: "clamp(1.3rem, 1.2333rem + 0.3556vw, 1.5rem)" }
+              : {
+                  fontSize: "clamp(0.9rem, -0.3rem + 2.4vw, 1.5rem)",
+                }
           }>
           {answer}
         </button>
