@@ -25,14 +25,20 @@ function filterCountries(countries) {
     "io",
   ];
 
-  const filteredCountries = countries.filter(
-    (country) => !excludedCodes.includes(country.code),
-  );
+  const nameOverrides = {
+    kp: "North Korea",
+    kr: "South Korea",
+    va: "Vatican City",
+  };
 
-  return filteredCountries.map((country) => ({
-    ...country,
-    name: country.name.replace(/[,(].*/, "").trim(),
-  }));
+  return countries
+    .filter((country) => !excludedCodes.includes(country.code))
+    .map((country) => ({
+      ...country,
+      name:
+        nameOverrides[country.code] ??
+        country.name.replace(/[,(].*/, "").trim(),
+    }));
 }
 
 function getNewRound(countries) {
