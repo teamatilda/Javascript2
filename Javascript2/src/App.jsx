@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import CountryInfoDetails from "./pages/CountryInfoDetails";
+import CountryDetails from "./pages/CountryDetails";
 
-import "./WeatherWidget.css";
-import "./Navbar.css";
+import "./styles/WeatherWidget.css";
+import "./styles/Navbar.css";
 import "./style.css";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Country/:info" element={<CountryInfoDetails />} />
+        <Route path="/Country/:info" element={<CountryDetails />} />
       </Routes>
     </>
   );
