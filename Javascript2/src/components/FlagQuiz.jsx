@@ -1,5 +1,7 @@
 import "../styles/FlagQuiz.css";
 
+// Complete flag quiz component. It is imported in FlagQuizPage.jsx
+// where all of the game logic is handled.
 export default function FlagQuiz({
   score,
   highscore,
@@ -30,6 +32,7 @@ export default function FlagQuiz({
   );
 }
 
+// Basic header
 function FlagQuizHeader() {
   return (
     <span className="flag-quiz-header">
@@ -39,6 +42,7 @@ function FlagQuizHeader() {
   );
 }
 
+// Renders the current score and highscore.
 function FlagQuizScore({ score = "?", highscore = "?" }) {
   return (
     <div className="flag-quiz-score">
@@ -54,6 +58,13 @@ function FlagQuizScore({ score = "?", highscore = "?" }) {
   );
 }
 
+// Component that handles the rendering of the answer buttons,
+// and the button to go to the next round. Dynamically handles
+// assignment of CSS-classes to display right/wrong answers,
+// disabling of buttons when they aren't supposed to be pressed,
+// and dynamic font size based on the amount of characters in
+// the answers (some place names had 40+ characters and wouldn't
+// fit in the buttons).
 function FlagQuizButtons({
   answersArray,
   handleAnswerClick,

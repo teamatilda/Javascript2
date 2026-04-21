@@ -4,6 +4,9 @@ import FlagQuiz from "../components/FlagQuiz.jsx";
 import { useState, useEffect } from "react";
 import { getAllCountries } from "../api/countriesApi.js";
 
+// Helper function that removes places with duplicate flags,
+// manually overrides some place names, and trims all names
+// to remove unnecessary information after trailing commas.
 function filterCountries(countries) {
   const excludedCodes = [
     "bq",
@@ -41,6 +44,12 @@ function filterCountries(countries) {
     }));
 }
 
+// Helper function that gets a new round. It returns an object
+// that contains the following elements:
+// * Two-digit country code used to render the correct flag
+// * The correct answer corresponding to the country code
+// * Array containing the correct answer and 3 wrong answers
+//   in a randomized order (used for rendering answer buttons)
 function getNewRound(countries) {
   let indexArray = [];
 
@@ -64,6 +73,7 @@ function getNewRound(countries) {
   };
 }
 
+// Main page component
 export default function FlagQuizPage() {
   const rawCountries = useCountriesStore((state) => state.countries);
   const setRawCountries = useCountriesStore((state) => state.setCountries);
@@ -78,6 +88,9 @@ export default function FlagQuizPage() {
   );
   const [error, setError] = useState("");
 
+  // Gets all countries from the countries API and syncs them to
+  // the global zustand variable in /store/countriesStore.js if
+  // it is empty.
   useEffect(() => {
     if (countries.length > 0) return;
 
@@ -92,6 +105,8 @@ export default function FlagQuizPage() {
     loadCountries();
   }, []);
 
+  // Tries to start a new round if countries have loaded successfully,
+  // and if there is no current round active.
   useEffect(() => {
     if (countries.length > 0 && !currentRound) {
       try {
@@ -105,9 +120,9 @@ export default function FlagQuizPage() {
   if (error) return <p>{error}</p>;
   if (!currentRound) return <p>Loading...</p>;
 
-  console.log("Right answer: " + currentRound.rightAnswer);
-  console.log("Code: " + currentRound.flag);
-
+  // Helper function that runs when clicking one of the answer buttons.
+  // Changes the score based on if the answer was right/wrong, and also
+  // updates the highscore if needed.
   function handleAnswerClick(answer) {
     setSelectedAnswer(answer);
 
@@ -122,6 +137,7 @@ export default function FlagQuizPage() {
     }
   }
 
+  //
   function handleNextClick() {
     setSelectedAnswer(null);
     setCurrentRound(getNewRound(countries));
