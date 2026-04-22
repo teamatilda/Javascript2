@@ -18,6 +18,8 @@ function App() {
       <Routes>
         <Route path="/Country/:info" element={<CountryInfoDetails />} />
       </Routes>
+      <main> 
+      </main>
     </>
   );
 }
