@@ -26,13 +26,14 @@ export default function CountryInfo({ country }) {
         <WeatherWidget capital={country.capital} />
       </div>
 
-      <div className="country-map">
-        <CountryMap country={country} />
-      </div>
-
       <div className="country-info-box">
         <h2>Background</h2>
         <p>{country.background}</p>
+      </div>
+
+      
+      <div className="country-map">
+        <CountryMap country={country} />
       </div>
     </section>
   );

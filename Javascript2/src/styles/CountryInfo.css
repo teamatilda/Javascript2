@@ -106,10 +106,11 @@
 }
 
 .country-map {
-  height: 400px;
+  height: 500px;
   width: 100%;
-  margin-top: 20px;
-  border-radius: 12px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
   overflow: hidden;
 }
 
