@@ -66,18 +66,22 @@
     padding: 0 1rem;
 }
 
+.country-info-facts {
+    font-family: var(--font-primary);
+}
+
 .country-info-section {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     padding: 0 1rem 1rem;
-    place-content: center;
+}
 
-    flex-wrap: wrap;
+.country-info-section > div:nth-child(4){
+    grid-column: 1 / -1;
 }
 
 .country-info-section > div {
-    flex: 1 1 120px; 
-
     background-color: var(--color-bg-light);
     border-radius: 8px;
     text-align: center;
@@ -87,7 +91,99 @@
     font-size: clamp(0.75rem, 2vw, 0.9rem);
 
     padding: 0.5rem;
-    font-family: var(--font-primary);
+}
+
+.country-info-section-title {
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-top: 2.5rem;
+}
+
+.country-info-geography {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 0 1rem 1rem;
+    margin: 1rem;
+}
+
+.country-info-geography > div {
+    background-color: var(--color-bg-light);
+    border-radius: 8px;
+    text-align: center;
+    align-content: center;
+
+    /* responsive text */
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+
+.country-info-society {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 1rem 1rem;
+    margin: 1rem;
+}
+
+.country-info-society > div {
+    background-color: var(--color-bg-light);
+    border-radius: 8px;
+    text-align: center;
+    align-content: center;
+
+    /* responsive text */
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+
+.country-info-economy {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 1rem 1rem;
+    margin: 1rem;
+}
+
+.country-info-economy > div {
+    background-color: var(--color-bg-light);
+    border-radius: 8px;
+    text-align: center;
+    align-content: center;
+
+    /* responsive text */
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+
+.country-info-government {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 1rem 1rem;
+    margin: 1rem;
+}
+
+.country-info-government > div {
+    background-color: var(--color-bg-light);
+    border-radius: 8px;
+    text-align: center;
+    align-content: center;
+
+    /* responsive text */
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+
+    gap: 1rem;
+    padding: 0.5rem;
 }
 
 .label {

@@ -13,39 +13,40 @@ export default function CountryInfo({ country }) {
         <h1 className="country-info-title">{country.name}</h1>
       </div>
 
+    <div className="country-info-facts">
       <div className="country-info-section">
         <InfoSection label="Capital" value={country.capital} />
         <InfoSection label="Region" value={country.region} />
         <InfoSection label="Population" value={country.population} />
-        <InfoSection label="Languages" value={country.languages} />
+         <InfoSection label="Languages" value={country.languages} />
       </div>
 
+      <h2 className="country-info-section-title">Geography</h2>
       <div className="country-info-geography"> 
-        <h2 className="country-info-section-title">Geography</h2>
         <InfoSection label="Area" value={country.area} />
         <InfoSection label="Climate" value={country.climate} />
         <InfoSection label="Terrain" value={country.terrain} />
         <InfoSection label="Geographic notes" value={country.geography} />
       </div>
 
+       <h2 className="country-info-section-title">People & Society</h2>
       <div className="country-info-society">
-        <h2 className="country-info-section-title">People & Society</h2>
         <InfoSection label="Ethnic Groups" value={country.ethnicity} />
         <InfoSection label="Religion" value={country.religion} />
       </div> 
 
+      <h2 className="country-info-section-title">Economy</h2>
       <div className="country-info-economy">
-        <h2 className="country-info-section-title">Economy</h2>
         <InfoSection label="Currency" value={country.currency} />
         <InfoSection label="Economic Overview" value={country.economy} />
       </div>
 
+       <h2 className="country-info-section-title">Government</h2>
       <div className="country-info-government">
-        <h2 className="country-info-section-title">Government</h2>
         <InfoSection label="Government Type" value={country.government} />
         <InfoSection label="National Holiday" value={country.holiday} />
       </div>
-      
+    </div>
 
       <div className="country-info-weather">
         <WeatherWidget capital={country.capital} />
