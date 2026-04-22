@@ -1,3 +1,4 @@
+import { Info } from "lucide-react";
 import "../styles/CountryInfo.css";
 import "../styles/index.css";
 import WeatherWidget from "./WeatherWidget";
@@ -14,12 +15,37 @@ export default function CountryInfo({ country }) {
 
       <div className="country-info-section">
         <InfoSection label="Capital" value={country.capital} />
-        <InfoSection label="Currency" value={country.currency} />
-        <InfoSection label="Population" value={country.population} />
-        <InfoSection label="Area" value={country.area} />
         <InfoSection label="Region" value={country.region} />
+        <InfoSection label="Population" value={country.population} />
         <InfoSection label="Languages" value={country.languages} />
       </div>
+
+      <div className="country-info-geography"> 
+        <h2 className="country-info-section-title">Geography</h2>
+        <InfoSection label="Area" value={country.area} />
+        <InfoSection label="Climate" value={country.climate} />
+        <InfoSection label="Terrain" value={country.terrain} />
+        <InfoSection label="Geographic notes" value={country.geography} />
+      </div>
+
+      <div className="country-info-society">
+        <h2 className="country-info-section-title">People & Society</h2>
+        <InfoSection label="Ethnic Groups" value={country.ethnicity} />
+        <InfoSection label="Religion" value={country.religion} />
+      </div> 
+
+      <div className="country-info-economy">
+        <h2 className="country-info-section-title">Economy</h2>
+        <InfoSection label="Currency" value={country.currency} />
+        <InfoSection label="Economic Overview" value={country.economy} />
+      </div>
+
+      <div className="country-info-government">
+        <h2 className="country-info-section-title">Government</h2>
+        <InfoSection label="Government Type" value={country.government} />
+        <InfoSection label="National Holiday" value={country.holiday} />
+      </div>
+      
 
       <div className="country-info-weather">
         <WeatherWidget capital={country.capital} />

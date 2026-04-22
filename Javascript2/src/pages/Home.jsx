@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllCountries } from "../api/countriesApi";
-import WeatherWidget from "../WeatherWidget";
+import WeatherWidget from "../components/WeatherWidget";
 import CountrySection from "../components/CountrySection";
 
 function Home() {

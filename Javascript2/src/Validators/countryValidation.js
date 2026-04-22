@@ -38,6 +38,19 @@ export function validateCountry(country) {
         background: country.introduction?.background?.value?.string || "Unknown",
         area: `${country.geography?.area?.value?.total?.measurement} ${country.geography?.area?.value?.total?.unit}` || "Unknown",
         region: country.identity.classification?.region || "Unknown",
+
+        climate: country.geography?.climate?.value?.unit || "Unknown",
+        terrain: country.geography?.terrain?.value?.unit || "Unknown",
+        geography:  country.geography?.additional_notes?.value?.string || "Unknown",
+
+        ethnicity: country.people_and_society?.ethnic_groups?.value?.label || "Unknown",
+        religion: country.people_and_society?.religions?.label || "Unknown",
+
+        economy: country.economy?.overview?.value?.unit || "Unknown",
+
+        government: country.government?.government_type?.value?.unit || "Unknown",
+        holiday: country.government?.national_holiday?.value?.unit || "Unknown",
+
         lat: coordinates?.latitude ?? null,
         lon: coordinates?.longitude ?? null,
     };
