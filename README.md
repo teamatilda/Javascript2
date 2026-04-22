@@ -117,8 +117,8 @@ The application relies on the following internal API modules:
 
 * `countriesApi.js`
 
-    *`getAllCountries()`
-    *`getCountryBySlug()`
+    * `getAllCountries()`
+    * `getCountryBySlug()`
 
 * `weatherApi.js`
 
@@ -130,7 +130,7 @@ These modules handle data fetching from external services.
 
 ## State Management
 
-Global state is mangades using a custom hook:
+Global state is managed using a custom hook:
 
 * `useCountriesStore`
 
