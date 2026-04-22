@@ -65,16 +65,15 @@ export default function CountryMap({ country }) {
 };
 
 // Zoom function - Zooms in on the current country
+// GeoData.feature = array with all countries
+// matches right country with the name
 function Zoom({ geoData, country }) {
-  // Gives us the leaflet map
   const map = useMap();
 
   useEffect(() => {
-    // guard clause - incase of crash
+
     if (!geoData || !country) return;
 
-    // GeoData.feature = array with all countries
-    // matches right country with the name
     const feature = geoData.features.find(
       (f) => f.properties.name?.toLowerCase() === country.name?.toLowerCase()
     );
