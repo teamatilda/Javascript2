@@ -1,6 +1,7 @@
 import { Search, ListFilter } from "lucide-react";
 import { useState } from "react";
 import { useFilterStore } from "../store/filterStore";
+import { Link } from "react-router-dom";
 
 // Complete navbar component. The search bar and filter menu values
 // are synced with /store/filterStore.js using Zustand.
@@ -24,15 +25,20 @@ function NavHeader() {
     <div className="nav-header">
       <h1>Country Explorer</h1>
       <p>See information from countries around the world</p>
+
+      <div className="nav-links">
+        <Link to="/">Home</Link>
+        <Link to="/quiz">Quiz</Link>
+      </div>
     </div>
   );
 }
 
 // Search input field
 function NavSearchBar() {
-    const { searchQuery, setSearchQuery } = useFilterStore(); 
+  const { searchQuery, setSearchQuery } = useFilterStore();
 
-    return (  
+  return (
     <div className="nav-search-wrapper">
       <Search size="15" />
       <input
@@ -43,8 +49,8 @@ function NavSearchBar() {
         value={searchQuery}
       />
     </div>
-    
-    
+
+
   );
 }
 
