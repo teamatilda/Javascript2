@@ -20,10 +20,10 @@ function CountrySection({
 
           <div className="pager-buttons">
             <button onClick={onPrev} disabled={prevDisabled}>
-              Föregående
+              Previous
             </button>
             <button onClick={onNext} disabled={nextDisabled}>
-              Nästa
+              Next
             </button>
           </div>
         </div>

@@ -2,6 +2,7 @@ import "../styles/CountryInfo.css";
 import "../styles/index.css";
 import WeatherWidget from "./WeatherWidget";
 import "flag-icons/css/flag-icons.min.css";
+import CountryMap from "./CountryMaps";
 
 export default function CountryInfo({ country }) {
 
@@ -16,7 +17,7 @@ export default function CountryInfo({ country }) {
         <InfoSection label="Capital" value={country.capital} />
         <InfoSection label="Currency" value={country.currency} />
         <InfoSection label="Population" value={country.population} />
-        <InfoSection label="Area" value={country.area} />
+        <InfoSection label="Total Area" value={country.area} />
         <InfoSection label="Region" value={country.region} />
         <InfoSection label="Languages" value={country.languages} />
       </div>
@@ -28,6 +29,12 @@ export default function CountryInfo({ country }) {
       <div className="country-info-box">
         <h2>Background</h2>
         <p>{country.background}</p>
+      </div>
+
+      
+      <div className="country-map">
+        <h2 className="country-map-title">Map of {country.name}</h2>
+        <CountryMap country={country} />
       </div>
     </section>
   );
