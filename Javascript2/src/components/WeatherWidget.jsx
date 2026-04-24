@@ -19,9 +19,8 @@ function getWeatherType(code) {
 }
 
 /* The weather widget fetches data from the API. It is currently hardcoded to a location in Sweden */
-function WeatherWidget() {
-  const latitude = 59.6162;
-  const longitude = 16.5528;
+function WeatherWidget({ lat, lon }) {
+  
 
   const [weather, setWeather] = useState(null);
   const [hourlyTemps, setHourlyTemps] = useState([]);
@@ -29,7 +28,7 @@ function WeatherWidget() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    getWeather(latitude, longitude)
+    getWeather(lat, lon)
       .then((data) => {
         setWeather(data);
 
@@ -68,7 +67,7 @@ function WeatherWidget() {
         setError("Couldnt fetch weather data");
       });
     /* useEffect runs when the component mounts and when latitude or longitude changes. */
-  }, [latitude, longitude]);
+  }, [lat, lon]);
 
   if (error) {
     return <p>{error}</p>;

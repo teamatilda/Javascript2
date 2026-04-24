@@ -19,6 +19,7 @@ function App() {
         <Route path="/Country/:info" element={<CountryInfoDetails />} />
       </Routes>
       <main> 
+        <WeatherWidget/>
       </main>
     </>
   );
