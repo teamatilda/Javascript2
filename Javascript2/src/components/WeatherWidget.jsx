@@ -3,18 +3,18 @@ import '../styles/WeatherWidget.css';
 
 function getWeatherType(code) {
   if (code >= 1 && code < 3) {
-    return 'clouds';
+    return "clouds";
   }
   if (code >= 60 && code < 69) {
-    return 'rain';
+    return "rain";
   }
   if (code >= 70 && code < 79) {
-    return 'snow';
+    return "snow";
   }
   if (code >= 95 && code < 99) {
-    return 'thunder';
+    return "thunder";
   }
-  return 'clear';
+  return "clear";
 }
 
 /* The weather widget fetches data from the API. It is currently hardcoded to a location in Sweden */
@@ -27,7 +27,9 @@ function WeatherWidget() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,weathercode&windspeed_unit=ms&temperature_unit=celsius&daily=temperature_2m_max,temperature_2m_min,weathercode`)
+    fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,weathercode&windspeed_unit=ms&temperature_unit=celsius&daily=temperature_2m_max,temperature_2m_min,weathercode`,
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Weather API request failed");
@@ -60,14 +62,20 @@ function WeatherWidget() {
         setHourlyTemps(hourlyDataForToday);
         /* Creates an array with 5 days forward with max and min temperature */
         const daily = data.daily;
-        if (!daily || !daily.time || !daily.temperature_2m_max || !daily.temperature_2m_min || !daily.weathercode) {
-          throw new Error('No daily weather in API response');
+        if (
+          !daily ||
+          !daily.time ||
+          !daily.temperature_2m_max ||
+          !daily.temperature_2m_min ||
+          !daily.weathercode
+        ) {
+          throw new Error("No daily weather in API response");
         }
         const fiveDays = daily.time.slice(0, 5).map((day, index) => ({
           date: day,
           max: daily.temperature_2m_max[index],
           min: daily.temperature_2m_min[index],
-          code: daily.weathercode[index]
+          code: daily.weathercode[index],
         }));
         setDailyForecast(fiveDays);
         setError('');
@@ -77,7 +85,7 @@ function WeatherWidget() {
         setWeather(null);
         setHourlyTemps([]);
         setDailyForecast([]);
-        setError('Could not fetch weather data right now.');
+        setError("Could not fetch weather data right now.");
       });
     /* useEffect runs when the component mounts and when latitude or longitude changes. */
   }, [latitude, longitude]);
@@ -140,10 +148,14 @@ function WeatherWidget() {
               {dailyForecast.map((day) => (
                 <div key={day.date} className="day-item">
                   <span>
-                    {new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' })}
+                    {new Date(day.date).toLocaleDateString("en-US", {
+                      weekday: "short",
+                    })}
                   </span>
                   <span>{weatherIcons[getWeatherType(day.code)]}</span>
-                  <span>{day.max}° / {day.min}°</span>
+                  <span>
+                    {day.max}° / {day.min}°
+                  </span>
                 </div>
               ))}
             </div>
