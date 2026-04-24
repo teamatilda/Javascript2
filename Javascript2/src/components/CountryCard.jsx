@@ -19,59 +19,39 @@ function CountryCard({ country, onAddFavorite, onRemoveFavorite }) {
       to={`/country/${country?.name?.common || ""}`}
       className="country-card"
     >
-  <div className="country-card__image-wrapper">
-      <img
-        className="country-card__flag"
-        src={country?.flags?.png || ""}
-        alt={`Flagga för ${country?.name?.common || "okänt land"}`}
-      />
+      <div className="country-card__image-wrapper">
+        <img
+          className="country-card__flag"
+          src={country?.flags?.png || ""}
+          alt={`Flagga för ${country?.name?.common || "okänt land"}`}
+        />
 
-    {onAddFavorite && (
-      <button
-        className="favorite-button"
-        onClick={handleFavoriteClick}
-        type="button"
-      >
-        ☆
-      </button>
-    )}
+        {onAddFavorite && (
+          <button
+            className="favorite-button"
+            onClick={handleFavoriteClick}
+            type="button"
+          >
+            ★
+          </button>
+        )}
 
-    {onRemoveFavorite && (
-      <button
-        className="favorite-button"
-        onClick={handleRemoveFavorite}
-        type="button"
-      >
-        ✕
-      </button>
-    )}
-  </div>
+        {onRemoveFavorite && (
+          <button
+            className="favorite-button"
+            onClick={handleRemoveFavorite}
+            type="button"
+          >
+            ✕
+          </button>
+        )}
+      </div>
 
       <div className="country-card__content">
         <div className="country-card__header">
           <h2 className="country-card__title">
             {country?.name?.common || "Okänt land"}
           </h2>
-
-          {onAddFavorite && (
-            <button
-              className="favorite-button"
-              onClick={handleFavoriteClick}
-              type="button"
-            >
-              ☆
-            </button>
-          )}
-
-          {onRemoveFavorite && (
-            <button
-              className="favorite-button"
-              onClick={handleRemoveFavorite}
-              type="button"
-            >
-              ✕
-            </button>
-          )}
         </div>
 
         <p className="country-card__text">

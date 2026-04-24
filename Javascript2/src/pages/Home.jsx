@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllCountries } from "../api/countriesApi";
-import WeatherWidget from "../WeatherWidget";
+import WeatherWidget from "../components/WeatherWidget";
 import CountrySection from "../components/CountrySection";
 
 function Home() {
@@ -113,9 +113,9 @@ const handleNextFavorites = () => {
       <main className="app-layout">
         <section className="left-panel">
           <CountrySection
-            title="Favoriter"
+            title="Favorites"
             countries={visibleFavorites}
-            emptyText="Inga favoriter ännu"
+            emptyText="No favorites yet"
             onPrev={handlePrevFavorites}
             onNext={handleNextFavorites}
             prevDisabled={favoritesPage === 0}
@@ -133,7 +133,7 @@ const handleNextFavorites = () => {
   return (
     <CountrySection
       key={index}
-      title="Utforska länder"
+      title="Explore countries"
       countries={getVisibleCountries(index)}
       emptyText="Inga länder att visa"
       onPrev={() => handlePrev(index)}

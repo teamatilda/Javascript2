@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/quiz" element={<FlagQuizPage />} />
         <Route path="/" element={<Home />} />
-        <Route path="/Country/:info" element={<CountryInfoDetails />} />
+        <Route path="/Country/:info" element={<CountryDetails />} />
       </Routes>
     </>
   );
