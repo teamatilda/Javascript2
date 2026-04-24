@@ -1,17 +1,17 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import CountryDetails from "./pages/CountryDetails";
-
-import "./styles/WeatherWidget.css";
 import "./styles/Navbar.css";
-import "./style.css";
+import CountryInfoDetails from "./pages/CountryInfoPage.jsx";
+import { getWeather } from "./api/weatherApi";
+import FlagQuizPage from "./pages/FlagQuizPage.jsx";
+import { useCountriesStore } from "./store/countriesStore.js";
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
+        <Route path="/quiz" element={<FlagQuizPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/Country/:info" element={<CountryDetails />} />
       </Routes>

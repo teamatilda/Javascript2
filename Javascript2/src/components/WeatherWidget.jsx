@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import "../styles/WeatherWidget.css";
+import { useEffect, useState } from 'react';
+import '../styles/WeatherWidget.css';
 
 function getWeatherType(code) {
   if (code >= 1 && code < 3) {
@@ -24,7 +24,7 @@ function WeatherWidget() {
   const [weather, setWeather] = useState(null);
   const [hourlyTemps, setHourlyTemps] = useState([]);
   const [dailyForecast, setDailyForecast] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetch(
@@ -49,7 +49,7 @@ function WeatherWidget() {
           windspeed: current.windspeed ?? current.wind_speed,
           weathercode: current.weathercode ?? current.weather_code ?? 0,
         });
-        const today = new Date().toISOString().split("T")[0];
+        const today = new Date().toISOString().split('T')[0];
         /* Creates an array with time and temperature for each hour today. */
         const hourlyDataForToday = hourly.time
           .map((time, index) => ({
@@ -78,7 +78,7 @@ function WeatherWidget() {
           code: daily.weathercode[index],
         }));
         setDailyForecast(fiveDays);
-        setError("");
+        setError('');
         /* Sets error to an empty string if everything went well. */
       })
       .catch(() => {
@@ -98,7 +98,7 @@ function WeatherWidget() {
     return <p>Loading weather...</p>;
   }
   /* Changes the background image based on the weather code returned from the API. */
-  let background = "clear";
+  let background = 'clear';
 
   if (weather.weathercode >= 1 && weather.weathercode < 3) {
     background = "clouds";
@@ -114,7 +114,7 @@ function WeatherWidget() {
     clouds: "☁️",
     rain: "🌧️",
     snow: "❄️",
-    thunder: "⛈️",
+    thunder: "⛈️"
   };
 
   /* Outputs the background image and weather information */
