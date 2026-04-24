@@ -11,6 +11,8 @@ function App() {
     <>
       <Navbar />
       <Routes>
+        <Route path="/quiz" element={<FlagQuizPage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/Country/:info" element={<CountryInfoDetails />} />
       </Routes>
     </>
