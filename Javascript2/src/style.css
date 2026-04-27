@@ -1,49 +1,65 @@
+:root {
+  --bg-page: #f5f2ec;
+  --card-bg: #ffffff;
+  --border-soft: #e4ddd3;
+  --text-main: #2f2c28;
+  --line-soft: #e4ddd3;
+  --text-soft: #6f6a63;
+  --button-main: #8b8877;
+  --button-main-hover: #777463;
+  --button-muted-text: #b3ab9f;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg-page);
+  color: var(--text-main);
+}
+
+body {
+  font-family: Georgia, serif;
+}
+
 .app-layout {
   width: 100%;
-  padding: 2rem 3rem;
+  padding: 1.5rem 2rem 3rem;
   box-sizing: border-box;
+  background: transparent;
 }
 
 .left-panel {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
   width: 100%;
 }
 
-.right-panel {
-  border-radius: 24px;
-  padding: 1.5rem;
-  background: #f8f4ef;
-}
-
+.right-panel,
 .content-box {
-  background: #f8f4ef;
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
   width: 100%;
-  box-sizing: border-box;
-}
-
-.search-input {
-  width: 100%;
-  padding: 0.9rem 1rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  font-size: 1rem;
   box-sizing: border-box;
 }
 
 .favorites-section,
 .countries-section {
   width: 100%;
+  background: transparent;
+  border-radius: 0px;
+  padding: 0 0 1.2rem 0;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .favorites-section h3,
 .countries-section h3 {
   margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-main);
 }
 
 .section-header {
@@ -60,16 +76,30 @@
 }
 
 .pager-buttons button {
-  padding: 0.5rem 0.9rem;
-  border: 1px solid #c8c1b8;
-  background: white;
-  border-radius: 10px;
+  padding: 0.55rem 0.95rem;
+  border-radius: 12px;
   cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
+.pager-buttons button:not(:disabled):last-child {
+  background: var(--button-main);
+  border: 1px solid var(--button-main);
+  color: #ffffff;
+}
+
+.pager-buttons button:not(:disabled):last-child:hover {
+  background: var(--button-main-hover);
+  border-color: var(--button-main-hover);
+}
+
+.pager-buttons button:first-child,
 .pager-buttons button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: var(--button-muted-text);
 }
 
 .countries-grid {
@@ -85,7 +115,7 @@
 }
 
 .weather-side {
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -95,7 +125,7 @@
   }
 
   .app-layout {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 }
 
