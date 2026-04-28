@@ -30,7 +30,6 @@ export default function CountryInfo({ country }) {
         <InfoSection label="Area" value={country.area} />
         <InfoSection label="Climate" value={country.climate} />
         <InfoSection label="Terrain" value={country.terrain} />
-        <InfoSection label="Geographic notes" value={country.geography} />
       </div>
 
        <h2 className="country-info-section-title">People & Society</h2>
