@@ -126,6 +126,8 @@ const handleNextFavorites = () => {
             sectionClassName="favorites-section"
           />
 
+<h2 className="explore-title">Explore countries</h2>          
+
 {Array.from({ length: numberOfSections }).map((_, index) => {
   const page = countryPages[index];
   const startIndex = index * cardsPerPage + page * cardsPerPage;
@@ -133,7 +135,6 @@ const handleNextFavorites = () => {
   return (
     <CountrySection
       key={index}
-      title="Explore countries"
       countries={getVisibleCountries(index)}
       emptyText="Inga länder att visa"
       onPrev={() => handlePrev(index)}
