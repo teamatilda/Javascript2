@@ -1,6 +1,6 @@
 :root {
-  --bg-page: #f5f2ec;
-  --card-bg: #ffffff;
+  --bg-page: #f5f2ec;      
+  --card-bg: #ffffff;     
   --border-soft: #e4ddd3;
   --text-main: #2f2c28;
   --line-soft: #e4ddd3;
@@ -15,7 +15,7 @@ body,
 #root {
   margin: 0;
   min-height: 100%;
-  background: var(--bg-page);
+  background-color: var(--bg-page); 
   color: var(--text-main);
 }
 
@@ -27,7 +27,6 @@ body {
   width: 100%;
   padding: 1.5rem 2rem 3rem;
   box-sizing: border-box;
-  background: transparent;
 }
 
 .left-panel {
@@ -37,42 +36,42 @@ body {
   width: 100%;
 }
 
-.right-panel,
 .content-box {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
   width: 100%;
-  box-sizing: border-box;
 }
 
 .favorites-section,
 .countries-section {
   width: 100%;
-  background: transparent;
-  border-radius: 0px;
   padding: 0 0 1.2rem 0;
   border-bottom: 1px solid var(--line-soft);
-}
-
-.favorites-section h3,
-.countries-section h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: var(--text-main);
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin-bottom: 1rem;
-  gap: 1rem;
+}
+
+.section-header h3,
+.explore-title {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  color: var(--button-main);
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .pager-buttons {
   display: flex;
   gap: 0.5rem;
+  margin-left: auto; 
 }
 
 .pager-buttons button {
@@ -135,7 +134,17 @@ body {
   }
 
   .section-header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row; 
+    align-items: center;
+  }
+
+  .pager-buttons {
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+
+  .section-header h3,
+  .explore-title {
+    font-size: 1.2rem;
   }
 }
