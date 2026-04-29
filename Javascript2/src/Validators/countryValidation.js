@@ -19,38 +19,61 @@ export function validateCountry(country) {
     throw new Error("Invalid country data");
   }
 
-    const rawPopulation = country.people_and_society?.population?.value?.total?.number || 0;
-    const coordinates = country.government?.capital?.value?.coordinates;
+  const safe = (value, fallback = "Unknown") => value ?? fallback;
 
-    return {
-        name: country.identity.names?.common || country.name || "Unknown",
-        officialName: country.identity.names?.official || "Unknown",
-        capital: country.government.capital?.value?.name?.string || "Unknown",
-        region: country.identity.classification?.region || "Unknown",
-        population: rawPopulation >= 1_000_000? `${(rawPopulation / 1_000_000).toFixed(1)} million`
-        : rawPopulation,
-        code: country.identity?.iso?.alpha2?.toLowerCase() || "xx",
-        currency: country.identity.currency?.name || "Unknown",
-        languages: country.people_and_society?.languages?.value? country.people_and_society.languages.value
-        .filter(lang => lang.label !== "Other")
-        .map(lang => lang.label)
-        .join(", ") : "N/A",
-        background: country.introduction?.background?.value?.string || "Unknown",
-        area: `${country.geography?.area?.value?.total?.measurement} ${country.geography?.area?.value?.total?.unit}` || "Unknown",
-        region: country.identity.classification?.region || "Unknown",
+  const identity = country.identity || {};
+  const government = country.government || {};
+  const geo = country.geography || {};
+  const society = country.people_and_society || {};
 
-        climate: country.geography?.climate?.value?.string || "Unknown",
-        terrain: country.geography?.terrain?.value?.string || "Unknown",
+  const rawPopulation = society.population?.value?.total?.number ?? 0;
+  const coordinates = government.capital?.value?.coordinates;
 
-        ethnicity: country.people_and_society?.ethnic_groups?.value?.label || "Unknown",
-        religion: country.people_and_society?.religions?.value?.note || "Unknown",
+  return {
+    name: identity.names?.common || country.name || "Unknown",
+    officialName: safe(identity.names?.official),
+    capital: safe(government.capital?.value?.name?.string),
+    region: safe(identity.classification?.region),
 
-        economy: country.economy?.overview?.value?.string || "Unknown",
+    population: formatPopulation(rawPopulation),
+    code: identity.iso?.alpha2?.toLowerCase() || "xx",
+    currency: safe(identity.currency?.name),
 
-        government: country.government?.government_type?.value?.string || "Unknown",
-        holiday: country.government?.national_holiday?.value?.string || "Unknown",
+    languages: formatLanguages(society.languages?.value),
 
-        lat: coordinates?.latitude ?? null,
-        lon: coordinates?.longitude ?? null,
-    };
+    background: safe(country.introduction?.background?.value?.string),
+
+    area: geo.area?.value?.total
+      ? `${geo.area.value.total.measurement} ${geo.area.value.total.unit}`
+      : "Unknown",
+
+    climate: safe(geo.climate?.value?.string),
+    terrain: safe(geo.terrain?.value?.string),
+
+    ethnicity: safe(society.ethnic_groups?.value?.label),
+    religion: safe(society.religions?.value?.note),
+
+    economy: safe(country.economy?.overview?.value?.string),
+    government: safe(government.government_type?.value?.string),
+    holiday: safe(government.national_holiday?.value?.string),
+
+    lat: coordinates?.latitude ?? null,
+    lon: coordinates?.longitude ?? null,
+  };
+
+  function formatPopulation(pop) {
+    if (pop >= 1_000_000) {
+      return `${(pop / 1_000_000).toFixed(1)} million`;
+    }
+    return pop;
+  }
+
+  function formatLanguages(langs) {
+    if (!langs) return "N/A";
+
+    return langs
+      .filter((lang) => lang.label !== "Other")
+      .map((lang) => lang.label)
+      .join(", ");
+  }
 }
