@@ -17,26 +17,17 @@ export default function CountryInfo({ country }) {
     <div className="country-info-facts">
       <div className="country-info-section">
         <InfoSection label="Capital" value={country.capital} />
-        <InfoSection label="Currency" value={country.currency} />
         <InfoSection label="Population" value={country.population} />
-        <InfoSection label="Total Area" value={country.area} />
         <InfoSection label="Region" value={country.region} />
-        <InfoSection label="Population" value={country.population} />
-         <InfoSection label="Languages" value={country.languages} />
+        <InfoSection label="Languages" value={country.languages} />
       </div>
 
       <h2 className="country-info-section-title">Geography</h2>
       <div className="country-info-geography"> 
-        <InfoSection label="Area" value={country.area} />
+        <InfoSection label="Total Area" value={country.area} />
         <InfoSection label="Climate" value={country.climate} />
         <InfoSection label="Terrain" value={country.terrain} />
       </div>
-
-       <h2 className="country-info-section-title">People & Society</h2>
-      <div className="country-info-society">
-        <InfoSection label="Ethnic Groups" value={country.ethnicity} />
-        <InfoSection label="Religion" value={country.religion} />
-      </div> 
 
       <h2 className="country-info-section-title">Economy</h2>
       <div className="country-info-economy">
@@ -73,7 +64,8 @@ function InfoSection({ label, value }) {
   return (
     <div className="info-section">
       <h2 className="label">{label}</h2>
-      <h2 className="value">{value}</h2>
+      <h3 className="value">{value}</h3>
     </div>
   );
 }
+

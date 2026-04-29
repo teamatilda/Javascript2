@@ -101,10 +101,10 @@
 
 .country-info-geography {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
+    margin-top: 1rem;
     padding: 0 1rem 1rem;
-    margin: 1rem;
 }
 
 .country-info-geography > div {
@@ -112,43 +112,19 @@
     border-radius: 8px;
     text-align: center;
     align-content: center;
+    text-transform: capitalize;
 
-    /* responsive text */
     font-size: clamp(0.75rem, 2vw, 0.9rem);
 
-    gap: 1rem;
     padding: 0.5rem;
 }
-
-
-.country-info-society {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 0 1rem 1rem;
-    margin: 1rem;
-}
-
-.country-info-society > div {
-    background-color: var(--color-bg-light);
-    border-radius: 8px;
-    text-align: center;
-    align-content: center;
-
-    /* responsive text */
-    font-size: clamp(0.75rem, 2vw, 0.9rem);
-
-    gap: 1rem;
-    padding: 0.5rem;
-}
-
 
 .country-info-economy {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
+    margin-top: 1rem;
     padding: 0 1rem 1rem;
-    margin: 1rem;
 }
 
 .country-info-economy > div {
@@ -156,11 +132,10 @@
     border-radius: 8px;
     text-align: center;
     align-content: center;
+    text-transform: capitalize;
 
-    /* responsive text */
     font-size: clamp(0.75rem, 2vw, 0.9rem);
 
-    gap: 1rem;
     padding: 0.5rem;
 }
 
@@ -169,8 +144,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    margin-top: 1rem;
     padding: 0 1rem 1rem;
-    margin: 1rem;
 }
 
 .country-info-government > div {
@@ -178,11 +153,11 @@
     border-radius: 8px;
     text-align: center;
     align-content: center;
+    text-transform: capitalize;
 
     /* responsive text */
     font-size: clamp(0.75rem, 2vw, 0.9rem);
 
-    gap: 1rem;
     padding: 0.5rem;
 }
 
@@ -192,6 +167,8 @@
 
 .value {
     color: var(--color-text-primary);
+    padding: 0.5rem;
+    font-size: 130%;
 }
 
 /* Weather-widget */

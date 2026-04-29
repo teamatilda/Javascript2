@@ -47,8 +47,8 @@ export function validateCountry(country) {
 
         economy: country.economy?.overview?.value?.string || "Unknown",
 
-        government: country.government?.government_type?.value?.unit || "Unknown",
-        holiday: country.government?.national_holiday?.value?.unit || "Unknown",
+        government: country.government?.government_type?.value?.string || "Unknown",
+        holiday: country.government?.national_holiday?.value?.string || "Unknown",
 
         lat: coordinates?.latitude ?? null,
         lon: coordinates?.longitude ?? null,
