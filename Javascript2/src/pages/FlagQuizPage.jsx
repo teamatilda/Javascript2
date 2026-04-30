@@ -144,7 +144,7 @@ export default function FlagQuizPage() {
   }
 
   return (
-    <div>
+    <main>
       <FlagQuiz
         score={score}
         highscore={highscore}
@@ -155,6 +155,6 @@ export default function FlagQuizPage() {
         rightAnswer={currentRound.rightAnswer}
         handleNextClick={handleNextClick}
       />
-    </div>
+    </main>
   );
 }

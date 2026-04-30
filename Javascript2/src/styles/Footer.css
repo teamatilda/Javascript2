@@ -1,0 +1,27 @@
+footer {
+  background: var(--color-bg-secondary);
+  height: 8rem;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--color-accent-soft);
+}
+
+footer h2 {
+  font-family: var(--font-secondary);
+  color: var(--color-text-primary);
+  font-size: clamp(1.9rem, 1.7rem + 1.0667vw, 2.5rem);
+  padding-bottom: 2.5rem;
+}
+
+footer p {
+  font-family: var(--font-primary);
+  color: var(--color-text-secondary);
+  font-size: clamp(0.8rem, 0.7333rem + 0.3556vw, 1rem);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 0.8rem;
+}
