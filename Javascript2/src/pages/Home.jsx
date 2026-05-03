@@ -4,70 +4,46 @@ import WeatherWidget from "../components/WeatherWidget";
 import CountrySection from "../components/CountrySection";
 
 function Home() {
-const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState([]);
+
   const [favorites, setFavorites] = useState(() => {
-  const saved = localStorage.getItem("favorites");
-  return saved ? JSON.parse(saved) : [];
-});
+    const saved = localStorage.getItem("favorites");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [favoritesPage, setFavoritesPage] = useState(0);
 
-const cardsPerPage = 4;
-const numberOfSections = 4;
+  // ⭐ GLOBAL PAGINATION (Altoal-style)
+  const [page, setPage] = useState(0);
+  const cardsPerPage = 16; // 4 rader × 4 kort
 
-const [countryPages, setCountryPages] = useState(
-  Array(numberOfSections).fill(0)
-);
-
-const getVisibleCountries = (sectionIndex) => {
-  const page = countryPages[sectionIndex];
-  const startIndex = sectionIndex * cardsPerPage + page * cardsPerPage;
-
-  return countries.slice(startIndex, startIndex + cardsPerPage);
-};
-
-const handleNext = (sectionIndex) => {
-  const page = countryPages[sectionIndex];
-  const nextStartIndex =
-    sectionIndex * cardsPerPage + (page + 1) * cardsPerPage;
-
-  if (nextStartIndex < countries.length) {
-    setCountryPages((prev) => {
-      const updated = [...prev];
-      updated[sectionIndex] += 1;
-      return updated;
-    });
-  }
-};
-
-const handlePrev = (sectionIndex) => {
-  if (countryPages[sectionIndex] > 0) {
-    setCountryPages((prev) => {
-      const updated = [...prev];
-      updated[sectionIndex] -= 1;
-      return updated;
-    });
-  }
-};
-
+  // ========================
+  // LOAD COUNTRIES
+  // ========================
   useEffect(() => {
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-}, [favorites]);
-
-   useEffect(() => {
-  async function loadCountries() {
-    try {
-      const data = await getAllCountries();
-      console.log("All countries for cards:", data);
-      setCountries(data);
-    } catch (err) {
-      console.error("Error loading countries:", err.message);
+    async function loadCountries() {
+      try {
+        const data = await getAllCountries();
+        setCountries(data);
+      } catch (err) {
+        console.error("Error loading countries:", err.message);
+      }
     }
-  }
 
-  loadCountries();
-}, []);
+    loadCountries();
+  }, []);
 
- const addToFavorites = (country) => {
+  // ========================
+  // FAVORITES STORAGE
+  // ========================
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  // ========================
+  // FAVORITES LOGIC
+  // ========================
+  const addToFavorites = (country) => {
     setFavorites((prev) => {
       const exists = prev.find(
         (c) =>
@@ -76,84 +52,87 @@ const handlePrev = (sectionIndex) => {
       );
 
       if (exists) return prev;
+      return [...prev, country];
+    });
+  };
 
+  const removeFromFavorites = (countryName) => {
+    setFavorites((prev) =>
+      prev.filter((c) => (c.name?.common || c.name) !== countryName)
+    );
+  };
 
-    return [...prev, country];
-  });
-};
+  // ========================
+  // FAVORITES PAGINATION
+  // ========================
+  const favoritesPerPage = 4;
+  const favoritesStartIndex = favoritesPage * favoritesPerPage;
 
-const removeFromFavorites = (countryName) => {
-  setFavorites((prev) =>
-    prev.filter((c) => (c.name?.common || c.name) !== countryName)
+  const visibleFavorites = favorites.slice(
+    favoritesStartIndex,
+    favoritesStartIndex + favoritesPerPage
   );
-};
 
+  // ========================
+  // MAIN COUNTRIES PAGINATION
+  // ========================
+  const startIndex = page * cardsPerPage;
 
-const favoritesPerPage = 4;
-const favoritesStartIndex = favoritesPage * favoritesPerPage;
-
-const visibleFavorites = favorites.slice(
-  favoritesStartIndex,
-  favoritesStartIndex + favoritesPerPage
-);
-
-const handleNextFavorites = () => {
-    if (favoritesStartIndex + favoritesPerPage < favorites.length) {
-      setFavoritesPage((prev) => prev + 1);
-    }
-  };
-
-  const handlePrevFavorites = () => {
-    if (favoritesPage > 0) {
-      setFavoritesPage((prev) => prev - 1);
-    }
-  };
-
-   return (
-      <main className="app-layout">
-        <section className="left-panel">
-          <CountrySection
-            title="Favorites"
-            countries={visibleFavorites}
-            emptyText="No favorites yet"
-            onPrev={handlePrevFavorites}
-            onNext={handleNextFavorites}
-            prevDisabled={favoritesPage === 0}
-            nextDisabled={
-              favoritesStartIndex + favoritesPerPage >= favorites.length
-            }
-            onRemoveFavorite={removeFromFavorites}
-            sectionClassName="favorites-section"
-          />
-
-<h2 className="explore-title">Explore countries</h2>          
-
-{Array.from({ length: numberOfSections }).map((_, index) => {
-  const page = countryPages[index];
-  const startIndex = index * cardsPerPage + page * cardsPerPage;
+  const visibleCountries = countries.slice(
+    startIndex,
+    startIndex + cardsPerPage
+  );
 
   return (
-    <CountrySection
-      key={index}
-      countries={getVisibleCountries(index)}
-      emptyText="Inga länder att visa"
-      onPrev={() => handlePrev(index)}
-      onNext={() => handleNext(index)}
-      prevDisabled={countryPages[index] === 0}
-      nextDisabled={startIndex + cardsPerPage >= countries.length}
-      onAddFavorite={addToFavorites}
-    />
-  );
-})}
+    <main className="app-layout">
+      <section className="left-panel">
 
-<div className="content-box">
-  <div className="weather-side">
-    <WeatherWidget />
-    </div>
-  </div>
- </section>
-</main>
-);
+        {/* ================= FAVORITES ================= */}
+        <CountrySection
+          title="Favorites"
+          countries={visibleFavorites}
+          emptyText="No favorites yet"
+          onPrev={() => setFavoritesPage((p) => Math.max(p - 1, 0))}
+          onNext={() =>
+            setFavoritesPage((p) =>
+              (p + 1) * favoritesPerPage < favorites.length ? p + 1 : p
+            )
+          }
+          prevDisabled={favoritesPage === 0}
+          nextDisabled={
+            (favoritesPage + 1) * favoritesPerPage >= favorites.length
+          }
+          onRemoveFavorite={removeFromFavorites}
+          sectionClassName="favorites-section"
+        />
+
+        <h2 className="explore-title">Explore countries</h2>
+
+        {/* ================= COUNTRIES GRID ================= */}
+        <CountrySection
+          countries={visibleCountries}
+          emptyText="Inga länder att visa"
+          onAddFavorite={addToFavorites}
+          onPrev={() => setPage((p) => Math.max(p - 1, 0))}
+          onNext={() =>
+            setPage((p) =>
+              (p + 1) * cardsPerPage < countries.length ? p + 1 : p
+            )
+          }
+          prevDisabled={page === 0}
+          nextDisabled={(page + 1) * cardsPerPage >= countries.length}
+        />
+
+        {/* ================= WEATHER ================= */}
+        <div className="content-box">
+          <div className="weather-side">
+            <WeatherWidget />
+          </div>
+        </div>
+
+      </section>
+    </main>
+  );
 }
 
-export default Home; 
+export default Home;

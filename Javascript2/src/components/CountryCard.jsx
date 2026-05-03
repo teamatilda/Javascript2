@@ -46,11 +46,11 @@ function CountryCard({ country, onAddFavorite, onRemoveFavorite }) {
       <div className="country-card__body">
         <div className="country-card__text-left">
           <p className="country-card__text">
-            <strong>Region:</strong> {country?.region || "Ingen data"}
+            <strong>Region:</strong> {country?.region || "No data"}
           </p>
 
           <p className="country-card__text">
-            <strong>Huvudstad:</strong> {country?.capital || "Ingen data"}
+            <strong>Capital:</strong> {country?.capital || "No data"}
           </p>
         </div>
 
