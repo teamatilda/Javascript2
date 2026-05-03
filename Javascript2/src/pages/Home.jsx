@@ -13,13 +13,10 @@ function Home() {
 
   const [favoritesPage, setFavoritesPage] = useState(0);
 
-  // ⭐ GLOBAL PAGINATION (Altoal-style)
   const [page, setPage] = useState(0);
   const cardsPerPage = 16; // 4 rader × 4 kort
 
-  // ========================
-  // LOAD COUNTRIES
-  // ========================
+
   useEffect(() => {
     async function loadCountries() {
       try {
@@ -33,16 +30,12 @@ function Home() {
     loadCountries();
   }, []);
 
-  // ========================
-  // FAVORITES STORAGE
-  // ========================
+  
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
-  // ========================
-  // FAVORITES LOGIC
-  // ========================
+ 
   const addToFavorites = (country) => {
     setFavorites((prev) => {
       const exists = prev.find(
@@ -62,9 +55,7 @@ function Home() {
     );
   };
 
-  // ========================
-  // FAVORITES PAGINATION
-  // ========================
+
   const favoritesPerPage = 4;
   const favoritesStartIndex = favoritesPage * favoritesPerPage;
 
@@ -73,9 +64,7 @@ function Home() {
     favoritesStartIndex + favoritesPerPage
   );
 
-  // ========================
-  // MAIN COUNTRIES PAGINATION
-  // ========================
+  
   const startIndex = page * cardsPerPage;
 
   const visibleCountries = countries.slice(
@@ -87,7 +76,7 @@ function Home() {
     <main className="app-layout">
       <section className="left-panel">
 
-        {/* ================= FAVORITES ================= */}
+       
         <CountrySection
           title="Favorites"
           countries={visibleFavorites}
@@ -108,7 +97,7 @@ function Home() {
 
         <h2 className="explore-title">Explore countries</h2>
 
-        {/* ================= COUNTRIES GRID ================= */}
+    
         <CountrySection
           countries={visibleCountries}
           emptyText="Inga länder att visa"
@@ -123,7 +112,7 @@ function Home() {
           nextDisabled={(page + 1) * cardsPerPage >= countries.length}
         />
 
-        {/* ================= WEATHER ================= */}
+      
         <div className="content-box">
           <div className="weather-side">
             <WeatherWidget />
