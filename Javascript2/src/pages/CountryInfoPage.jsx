@@ -3,7 +3,9 @@
 import CountryInfo from "../components/CountryInfo";
 import CountryMap from "../components/CountryMaps";
 import { getCountryBySlug } from "../api/countriesApi"; /* Gets data from API */
+
 import { useParams } from "react-router-dom"; /* Gets parameteres from URL */
+
 import { useEffect, useState } from "react";
 
 export default function CountryInfoDetails() {
@@ -38,8 +40,8 @@ export default function CountryInfoDetails() {
   if (!country) return <p>Country could not be found</p>;
 
   return (
-    <>
+    <main>
       <CountryInfo country={country} />
-    </>
+    </main>
   );
 }

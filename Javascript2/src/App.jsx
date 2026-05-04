@@ -12,6 +12,7 @@ import Home from "./pages/Home.jsx";
 import { getWeather } from "./api/weatherApi";
 import FlagQuizPage from "./pages/FlagQuizPage.jsx";
 import { useCountriesStore } from "./store/countriesStore.js";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/Country/" element={<CountryDetails />} />
 >>>>>>> main
       </Routes>
+      <Footer />
     </>
   );
 }
