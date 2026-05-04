@@ -2,6 +2,7 @@ import { Search, ListFilter } from "lucide-react";
 import { useState } from "react";
 import { useFilterStore } from "../store/filterStore";
 import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
 
 // Complete navbar component. The search bar and filter menu values
 // are synced with /store/filterStore.js using Zustand.
@@ -49,8 +50,6 @@ function NavSearchBar() {
         value={searchQuery}
       />
     </div>
-
-
   );
 }
 
@@ -162,4 +161,3 @@ function NavSortDropdown() {
     </>
   );
 }
-

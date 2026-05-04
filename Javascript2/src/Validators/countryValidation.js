@@ -11,6 +11,8 @@ export function validateCountriesMetadata(data) {
     region: country.region || "Unknown",
     slug: country.name.toLowerCase().replaceAll(" ", "-"),
     code: country.code.iso2.toLowerCase() || "",
+    type: country.type,
+    population: country.population,
   }));
 }
 
@@ -57,8 +59,8 @@ export function validateCountry(country) {
     government: safe(government.government_type?.value?.string),
     holiday: safe(government.national_holiday?.value?.string),
 
-    lat: coordinates?.latitude ?? null,
-    lon: coordinates?.longitude ?? null,
+    lat: government?.capital?.value?.coordinates?.latitude ?? null,
+    lon: government?.capital?.value?.coordinates?.longitude ?? null,
   };
 
   function formatPopulation(pop) {
