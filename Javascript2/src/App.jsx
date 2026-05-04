@@ -1,25 +1,37 @@
-import { Routes, Route } from "react-router";
+import { Outlet, Routes, Route } from "react-router";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home.jsx";
 import CountryInfoDetails from "./pages/CountryInfoPage.jsx";
-import { getWeather } from "./api/weatherApi";
 import FlagQuizPage from "./pages/FlagQuizPage.jsx";
-import { useCountriesStore } from "./store/countriesStore.js";
-import WeatherWidget from "./components/WeatherWidget.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
     <>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Country/:info" element={<CountryInfoDetails />} />
-        <Route path="/Quiz" element={<FlagQuizPage />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/Country/:info" element={<CountryInfoDetails />} />
+          <Route path="/Quiz" element={<FlagQuizPage />} />
+        </Route>
       </Routes>
-      <main>
-        <WeatherWidget />
-      </main>
     </>
+  );
+}
+
+function Layout() {
+  return (
+    <div>
+      <header>
+        <Navbar />
+      </header>
+
+      <main>
+        <Outlet />
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 
