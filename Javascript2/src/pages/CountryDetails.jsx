@@ -4,10 +4,12 @@ function CountryDetails() {
   const { name } = useParams();
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>{name}</h1>
-      <p>Här kommer mer info senare...</p>
-    </div>
+    <main>
+      <div style={{ padding: "2rem" }}>
+        <h1>{name}</h1>
+        <p>Här kommer mer info senare...</p>
+      </div>
+    </main>
   );
 }
 

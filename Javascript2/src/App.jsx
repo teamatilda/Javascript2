@@ -4,7 +4,7 @@ import "./styles/Navbar.css";
 import "./style.css";
 import CountryInfoDetails from "./pages/CountryInfoPage.jsx";
 import CountryDetails from "./pages/CountryDetails.jsx";
-import Home from "./pages/Home.jsx";
+import CountryInfo from "./components/CountryInfo.jsx";
 import { getWeather } from "./api/weatherApi";
 import FlagQuizPage from "./pages/FlagQuizPage.jsx";
 import { useCountriesStore } from "./store/countriesStore.js";
@@ -15,11 +15,9 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/quiz" element={<FlagQuizPage />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<CountryDetails />} />
         <Route path="/Country/:info" element={<CountryInfoDetails />} />
-        <Route path="/FlagQuiz" element={<FlagQuizPage />} />
-        <Route path="/Country/" element={<CountryDetails />} />
+        <Route path="/Quiz" element={<FlagQuizPage />} />
       </Routes>
       <main> 
         <WeatherWidget/>

@@ -4,10 +4,9 @@ import L from "leaflet";
 import { useEffect, useState, useRef } from "react";
 import "../styles/index.css";
 
-
 export default function CountryMap({ country }) {
   // GeoJSON data of all countries
-  const [geoData, setGeoData] = useState(null);     
+  const [geoData, setGeoData] = useState(null);
   const geoRef = useRef();
 
   const countryName = country?.name ?? "";
@@ -22,36 +21,33 @@ export default function CountryMap({ country }) {
   }, []);
 
   const style = (feature) => {
-  console.log(feature.properties);
+    console.log(feature.properties);
 
-  const isSelected =
-    feature.properties.name?.toLowerCase() ===
-    countryName.toLowerCase();
-
+    const isSelected =
+      feature.properties.name?.toLowerCase() === countryName.toLowerCase();
 
     // Styling: current country is green, rest is beige
-  return {
-    fillColor: isSelected ? "green": "var(--color-accent-dark)",
-    fillOpacity: 0.3,
-    color: "grey",
-    weight: 1
-  };  
-};
+    return {
+      fillColor: isSelected ? "green" : "var(--color-accent-dark)",
+      fillOpacity: 0.3,
+      color: "grey",
+      weight: 1,
+    };
+  };
 
-// Rendering the map
-// Center - start position
-// Zoom - initial zoom
-// Style - size of map
-// Tilelayer gets street tiles from OpenStreetMap
-// GeoData loading - GeoJSON draws map - Zoom moves map to current country
+  // Rendering the map
+  // Center - start position
+  // Zoom - initial zoom
+  // Style - size of map
+  // Tilelayer gets street tiles from OpenStreetMap
+  // GeoData loading - GeoJSON draws map - Zoom moves map to current country
   return (
-    <MapContainer 
-    center={[50, 10]} 
-    zoom={4} 
-    style={{ height: "500px", width: "100%" }}>
+    <MapContainer
+      center={[50, 10]}
+      zoom={4}
+      style={{ height: "500px", width: "100%" }}
+    >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-
 
       {geoData && (
         <>
@@ -62,7 +58,7 @@ export default function CountryMap({ country }) {
       )}
     </MapContainer>
   );
-};
+}
 
 // Zoom function - Zooms in on the current country
 // GeoData.feature = array with all countries
@@ -71,11 +67,10 @@ function Zoom({ geoData, country }) {
   const map = useMap();
 
   useEffect(() => {
-
     if (!geoData || !country) return;
 
     const feature = geoData.features.find(
-      (f) => f.properties.name?.toLowerCase() === country.name?.toLowerCase()
+      (f) => f.properties.name?.toLowerCase() === country.name?.toLowerCase(),
     );
 
     // If country doesnt exist - stops execution
@@ -85,10 +80,10 @@ function Zoom({ geoData, country }) {
     const layer = L.geoJSON(feature);
     const bounds = layer.getBounds();
 
-    map.fitBounds(bounds)
+    map.fitBounds(bounds);
   }, [geoData, country, map]);
 
   if (!country) return null;
   if (!geoData) return null;
   return null;
-};
+}

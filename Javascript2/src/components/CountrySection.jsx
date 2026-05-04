@@ -16,7 +16,7 @@ function CountrySection({
     <div className="content-box">
       <div className={sectionClassName}>
         <div className="section-header">
-          <h3>{title}</h3>
+          {title && <h3>{title}</h3>}
 
           <div className="pager-buttons">
             <button onClick={onPrev} disabled={prevDisabled}>
