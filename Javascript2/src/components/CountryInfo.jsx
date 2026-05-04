@@ -7,6 +7,8 @@ import CountryMap from "./CountryMaps";
 
 export default function CountryInfo({ country }) {
 
+  console.log(country);
+
   return (
     <section className="country-info-card">
       <div className="country-info-header">
@@ -43,7 +45,7 @@ export default function CountryInfo({ country }) {
     </div>
 
       <div className="country-info-weather">
-        <WeatherWidget capital={country.capital} />
+        <WeatherWidget lat={country.lat} lon={country.lon} />
       </div>
 
       <div className="country-info-box">
