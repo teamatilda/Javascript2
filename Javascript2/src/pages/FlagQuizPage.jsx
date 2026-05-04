@@ -110,6 +110,9 @@ export default function FlagQuizPage() {
   useEffect(() => {
     if (countries.length > 0 && !currentRound) {
       try {
+        // Everything seems to work despite this error. Would be great
+        // if I can get some more information on how to fix it during
+        // the feedback session though!
         setCurrentRound(getNewRound(countries));
       } catch (err) {
         setError(err.message);
@@ -137,7 +140,9 @@ export default function FlagQuizPage() {
     }
   }
 
-  //
+  // Helper function that runs when the "next"-button is clicked.
+  // Sets the selected answer to null, and starts a new round using
+  // the getNewRound-function.
   function handleNextClick() {
     setSelectedAnswer(null);
     setCurrentRound(getNewRound(countries));

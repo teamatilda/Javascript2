@@ -72,7 +72,7 @@ function NavFilters() {
           <div className="nav-filter-menu-country-type">
             <p>Country Type</p>
             <NavFilterButtonGroup
-              buttonLabels={["All", "Sovereign State", "Dependent", "Other"]}
+              buttonLabels={["All", "sovereign state", "dependent", "other"]}
               filtersArray={countryTypes}
               setFiltersArray={setCountryTypes}
             />

@@ -5,10 +5,48 @@ import { getAllCountries } from "../api/countriesApi";
 import CountrySection from "../components/CountrySection";
 import "../styles/Home.css";
 
+// This function produces a filtered array of countries based
+// on the filters selected in the navbar. The filters are synced
+// with a Zustand store in /store/filterStore.js.
+function filterCountries(filters, rawCountries) {
+  let filteredCountries = rawCountries;
+
+  if (filters.countryTypes.length > 0) {
+    filteredCountries = filteredCountries.filter((country) =>
+      filters.countryTypes.includes(country.type),
+    );
+  }
+
+  if (filters.regions.length > 0) {
+    filteredCountries = filteredCountries.filter((country) =>
+      filters.regions.includes(country.region),
+    );
+  }
+
+  if (filters.searchQuery.length > 0) {
+    filteredCountries = filteredCountries.filter((country) =>
+      country.name.toLowerCase().includes(filters.searchQuery.toLowerCase()),
+    );
+  }
+
+  if (filters.sortBy === "Name") {
+    filteredCountries = [...filteredCountries].sort((a, b) =>
+      a.name.localeCompare(b.name),
+    );
+  } else if (filters.sortBy === "Population") {
+    filteredCountries = [...filteredCountries].sort(
+      (a, b) => (b.population ?? 0) - (a.population ?? 0),
+    );
+  }
+
+  return filteredCountries;
+}
+
 function Home() {
-  // const [countries, setCountries] = useState([]);
-  const countries = useCountriesStore((state) => state.countries);
-  const setCountries = useCountriesStore((state) => state.setCountries);
+  const [countries, setCountries] = useState([]);
+  const RawCountries = useCountriesStore((state) => state.countries);
+  const setRawCountries = useCountriesStore((state) => state.setCountries);
+  const filters = useFilterStore();
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem("favorites");
     return saved ? JSON.parse(saved) : [];
@@ -19,13 +57,16 @@ function Home() {
   const [page, setPage] = useState(0);
   const cardsPerPage = 16; // 4 rader × 4 kort
 
+  // Fetches all countries from the API if the array is empty.
+  // Syncs with Zustand store in /store/countriesStore.js
   useEffect(() => {
-    if (countries.length > 0) return;
+    if (RawCountries.length > 0) return;
 
     async function loadCountries() {
       try {
         const data = await getAllCountries();
-        setCountries(data);
+        setRawCountries(data);
+        setCountries(filterCountries(filters, data));
       } catch (err) {
         console.error("Error loading countries:", err.message);
       }
@@ -33,6 +74,18 @@ function Home() {
 
     loadCountries();
   }, []);
+
+  // Calls the filter function when either the filters or the
+  // raw countries-array changes.
+  useEffect(() => {
+    setCountries(filterCountries(filters, RawCountries));
+  }, [filters, RawCountries]);
+
+  // Goes back to the first page whenever a filter is changed
+  // to avoid issues with the filter function.
+  useEffect(() => {
+    setPage(0);
+  }, [filters]);
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
