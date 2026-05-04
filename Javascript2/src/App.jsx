@@ -1,22 +1,25 @@
 import { Routes, Route } from "react-router";
-import { useState, useEffect } from "react";
-import { getAllCountries, getCountryBySlug } from "./api/countriesApi";
-import "./styles/WeatherWidget.css";
 import Navbar from "./components/Navbar";
 import "./styles/Navbar.css";
-import CountryInfoDetails from "./pages/CountryInfoDetails";
-import CountryInfo from "./components/CountryInfo";
+import "./style.css";
+import CountryInfoDetails from "./pages/CountryInfoPage.jsx";
+import CountryDetails from "./pages/CountryDetails.jsx";
+import Home from "./pages/Home.jsx";
 import { getWeather } from "./api/weatherApi";
-import WeatherWidget from "./components/WeatherWidget";
 import FlagQuizPage from "./pages/FlagQuizPage.jsx";
 import { useCountriesStore } from "./store/countriesStore.js";
+import  WeatherWidget from "./components/WeatherWidget.jsx"
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
+        <Route path="/quiz" element={<FlagQuizPage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/Country/:info" element={<CountryInfoDetails />} />
+        <Route path="/FlagQuiz" element={<FlagQuizPage />} />
+        <Route path="/Country/" element={<CountryDetails />} />
       </Routes>
       <main> 
         <WeatherWidget/>

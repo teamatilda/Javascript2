@@ -25,7 +25,7 @@ function WeatherWidget({ lat, lon }) {
   const [weather, setWeather] = useState(null);
   const [hourlyTemps, setHourlyTemps] = useState([]);
   const [dailyForecast, setDailyForecast] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     getWeather(lat, lon)
@@ -78,7 +78,7 @@ function WeatherWidget({ lat, lon }) {
   }
 
   /* Changes the background image based on the weather code returned from the API. */
-  let background = "clear";
+  let background = 'clear';
 
   if (weather.weatherCode >= 1 && weather.weatherCode <= 3) {
     background = "clouds";
@@ -95,7 +95,7 @@ function WeatherWidget({ lat, lon }) {
     clouds: "☁️",
     rain: "🌧️",
     snow: "❄️",
-    thunder: "⛈️",
+    thunder: "⛈️"
   };
 
   /* Outputs the background image and weather information */
