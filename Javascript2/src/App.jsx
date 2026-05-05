@@ -20,7 +20,6 @@ function App() {
         <Route path="/Quiz" element={<FlagQuizPage />} />
       </Routes>
       <main> 
-        <WeatherWidget/>
       </main>
     </>
   );
