@@ -131,6 +131,7 @@ nav select:focus {
   max-width: 8rem;
   cursor: pointer;
   padding: 0.3rem 0.5rem;
+  text-transform: capitalize;
 }
 
 .nav-filter-controls button.active {
