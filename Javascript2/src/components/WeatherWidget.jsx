@@ -28,7 +28,19 @@ function WeatherWidget({ lat, lon }) {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    getWeather(lat, lon)
+    const latitude = Number(lat);
+    const longitude = Number(lon);
+    const hasValidCoordinates = Number.isFinite(latitude) && Number.isFinite(longitude);
+
+    if (!hasValidCoordinates) {
+      setWeather(null);
+      setHourlyTemps([]);
+      setDailyForecast([]);
+      setError("Missing or invalid coordinates");
+      return;
+    }
+
+    getWeather(latitude, longitude)
       .then((data) => {
         setWeather(data);
 
