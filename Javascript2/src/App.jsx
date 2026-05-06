@@ -21,7 +21,7 @@ function App() {
 
 function Layout() {
   return (
-    <div>
+    <>
       <header>
         <Navbar />
       </header>
@@ -30,8 +30,10 @@ function Layout() {
         <Outlet />
       </main>
 
-      <Footer />
-    </div>
+      <footer>
+        <Footer />
+      </footer>
+    </>
   );
 }
 
