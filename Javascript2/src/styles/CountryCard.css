@@ -11,7 +11,9 @@
   display: block;
   box-sizing: border-box;
   min-height: 200px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .country-card:hover {
@@ -47,46 +49,56 @@
   transform: scale(1.08);
 }
 
-
 .country-card__title {
   text-align: center;
   margin: 0 0 1rem;
   font-size: 1.1rem;
   color: #3d352c;
-}
 
+  min-height: 2.6em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 .country-card__body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem);
   min-height: 120px;
 }
 
-
 .country-card__text-left {
   flex: 1;
+  min-width: 0;
 }
 
 .country-card__text {
   margin: 0.35rem 0;
   color: #7a6f60;
   font-size: 0.95rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-
 .country-card__flag-right {
-  width: 140px;
-  min-height: 90px;
+  width: clamp(70px, 28%, 140px);
+  min-height: clamp(50px, 12vw, 90px);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-shrink: 1;
   position: relative;
-  top: 10px; 
+  top: 10px;
 }
 
 .country-card__flag-right .fi {
-  font-size: 110px; 
+  font-size: clamp(48px, 9vw, 110px);
+  line-height: 1;
 }
