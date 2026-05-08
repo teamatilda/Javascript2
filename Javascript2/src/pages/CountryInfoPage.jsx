@@ -1,7 +1,6 @@
 /* Here we get information about a land based on the URL, that is then shown in CountryInfo.jsx */
 
 import CountryInfo from "../components/CountryInfo";
-import CountryMap from "../components/CountryMaps";
 import { getCountryBySlug } from "../api/countriesApi"; /* Gets data from API */
 
 import { useParams } from "react-router-dom"; /* Gets parameteres from URL */
