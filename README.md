@@ -110,6 +110,9 @@ The application uses React Router for navigation.
 * `/Country/:info`
     Displays detailed information for a selected country.
 
+* `/Quiz`
+    Displays a flag quiz.
+
 ---
 
 ## APIs
@@ -145,15 +148,17 @@ This enables shared access to country-related data across components.
 * `CountryInfo` - Displays summary data for a country
 * `CountryInfoDetails` - Display detailed country information
 * `WeatherWidget` - Displays weather information
-* `FlagQuizPage` - Contains the quiz functionality
+* `FlagQuiz` - Contains the quiz functionality
+* `Footer`- Displays a footer
+* `CountrySection`- Handles a container for a section of countries
+* `CountryCardGrid` - Shows multiple countries in a grid
+* `CountryCard`- Handles country card
+* `CountryMaps`- Displays a map of selected country
 
 ---
 
 ## Styling 
 
-Styling is handled using standard CSS files:
-
-* `Navbar.css`
-* `WeatherWidget.css`
+Styling is handled using standard CSS files.
 
 ---
