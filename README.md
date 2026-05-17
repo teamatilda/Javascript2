@@ -30,24 +30,23 @@ project-root/
 │
 ├── src/
 │   ├── api/
-│   │
-│   ├── assets/
-│   │   ├── Countries/
-│   │   │   └── Stockholm.jpg
-│   │   ├── hero.png
-│   │   ├── react.svg
-│   │   └── vite.svg
-│   │
+│   │   ├── CountriesApi.js
+│   │   ├── weatherApi.js
+│   │ 
 │   ├── components/
 │   │   ├── CountryCard.jsx
+│   │   ├── CountryCardGrid.jsx
 │   │   ├── CountryInfo.jsx
+│   │   ├── CountryMaps.jsx
+│   │   ├── CountrySection.jsx
 │   │   ├── FlagQuiz.jsx
+│   │   ├── Footer.jsx
 │   │   ├── Navbar.jsx
 │   │   └── WeatherWidget.jsx
 │   │
 │   ├── pages/
-│   │   ├── CountryDetails.jsx
-│   │   ├── CountryInfoDetails.jsx
+│   │   ├── Home.jsx
+│   │   ├── CountryInfoPage.jsx
 │   │   └── FlagQuizPage.jsx
 │   │
 │   ├── store/
@@ -58,6 +57,8 @@ project-root/
 │   │   ├── CountryCard.css
 │   │   ├── CountryInfo.css
 │   │   ├── FlagQuiz.css
+│   │   ├── Footer.css
+│   │   ├── Home.css
 │   │   ├── index.css
 │   │   ├── Navbar.css
 │   │   └── WeatherWidget.css
